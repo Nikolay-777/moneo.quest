@@ -41,10 +41,9 @@
       z-index: 10;
       position: relative;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       flex-wrap: nowrap;
-      gap: 15px;
     }
     .title {
       font-size: 3rem;
@@ -61,53 +60,6 @@
       white-space: nowrap;
       text-align: center;
       flex: 1;
-    }
-    .coin-counter {
-      font-size: 1.25rem;
-      color: #0f0;
-      font-weight: 700;
-      text-shadow: 0 0 8px #0f0;
-      user-select: none;
-      min-width: 120px;
-      text-align: left;  
-      flex-shrink: 0;
-    }
-    .lang-switcher {
-      color: #ccc;
-      cursor: pointer;
-      font-size: 14px;
-      user-select: none;
-      min-width: 140px;
-      text-align: center;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-left: 20px;
-      flex-shrink: 0;
-    }
-    .lang-switcher button {
-      background: transparent;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      color: #ccc;
-      padding: 4px 8px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    .lang-switcher button:hover,
-    .lang-switcher button:focus {
-      background-color: #00ffff;
-      color: #111;
-      outline: none;
-      border-color: #00ffff;
-    }
-    .lang-switcher button.active {
-      background-color: #00ffff;
-      color: #111;
-      border-color: #00ffff;
-      cursor: default;
     }
     .description {
       font-size: 1.25rem;
@@ -136,22 +88,7 @@
       display: block;
     }
     .btn-withdraw {
-      background: #444;
-      color: #fff;
-      border: none;
-      padding: 10px 30px;
-      margin-bottom: 30px;
-      cursor: not-allowed;
-      opacity: 0.5;
-      font-weight: 700;
-      border-radius: 8px;
-      user-select: none;
-      transition: background-color 0.3s ease;
       display: none;
-    }
-    .btn-withdraw:hover:not(:disabled) {
-      background-color: #00ffff;
-      color: #111;
     }
     .offer-carousel {
       display: flex;
@@ -224,43 +161,17 @@
     }
     @media(max-width: 768px) {
       header {
-        flex-direction: column;
-        gap: 10px;
         justify-content: center;
-        align-items: center;
-      }
-      .coin-counter {
-        order: 1;
-        margin: 0;
-        text-align: center;
-        min-width: auto;
-        flex-shrink: 0;
       }
       .title {
-        order: 2;
         font-size: 2.5rem;
         white-space: normal;
         flex-basis: 100%;
         text-align: center;
       }
-      .lang-switcher {
-        order: 3;
-        margin: 0 auto 10px auto;
-        min-width: auto;
-        display: flex;
-        gap: 6px;
-        justify-content: center;
-      }
-      .lang-switcher button {
-        font-size: 14px;
-        padding: 6px 12px;
-      }
       .description {
         margin: 15px 10px 20px;
         font-size: 1rem;
-      }
-      .btn-withdraw {
-        order: 7;
       }
       .offer-button {
         min-width: 100px;
@@ -269,7 +180,6 @@
       }
       .video-container {
         width: 100%;
-        order: 4;
         margin-bottom: 20px;
       }
       .banner-row {
@@ -277,33 +187,22 @@
         flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 100px;
-        order: 6;
       }
       .banner {
         width: 100%;
         height: 90px;
       }
     }
-
   </style>
 </head>
 <body>
   <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/56b19f76-de44-4fd5-bc98-2247e0cf59ed.png" alt="Поле подсолнухов с теплым освещением и яркой зеленью" class="background-image" />
   <header>
-    <div class="coin-counter" id="coin-counter" aria-live="polite" aria-atomic="true" aria-label="Счетчик монет MONEO">MONEO: 0.00</div>
     <h1 class="title">Moneo Quest</h1>
-    <div class="lang-switcher" role="navigation" aria-label="Выбор языка">
-      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
-      <button class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
-      <button class="lang-btn" data-lang="it" aria-pressed="false">IT</button>
-      <button class="lang-btn" data-lang="uk" aria-pressed="false">UK</button>
-      <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
-      <button class="lang-btn" data-lang="zh" aria-pressed="false">ZH</button>
-    </div>
   </header>
-  <div class="description" id="description" aria-live="polite">
+  <p class="description" id="description" aria-live="polite">
     By completing quests you earn MONEO crypto, which can later be withdrawn and exchanged.
-  </div>
+  </p>
   <div class="video-container" aria-label="Видео плеер с рекламой" style="max-width:900px; margin:0 auto 30px; border-radius:16px; overflow:hidden; box-shadow:0 0 30px rgba(0,255,255,0.6); width:90%;">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
@@ -335,29 +234,36 @@
     © 2025 | Moneo Quest — Created by AI Technologies & Azovstal Foundation | Все права защищены
   </footer>
   <script>
+    // Логика начисления монет
     let coins = parseFloat(localStorage.getItem("moneo") || "0");
-    const counterEl = document.getElementById('coin-counter');
-    function updateCounter() {
-      counterEl.textContent = "MONEO: " + coins.toFixed(2);
-    }
+    const updateCounter = () => {
+      // Счетчик не отображается, так что обновлять элемент счетчика не нужно
+      // Можно здесь логировать или использовать для дальнейшей логики
+      console.log("Current MONEO balance:", coins.toFixed(2));
+    };
     updateCounter();
-    document.querySelectorAll(".offer-button").forEach(btn => {
-      btn.addEventListener("click", () => {
+
+    document.querySelectorAll(".offer-button").forEach(button => {
+      button.addEventListener("click", () => {
+        // Начисляем 5 монет за квест
         coins += 5;
         localStorage.setItem("moneo", coins.toFixed(2));
         updateCounter();
       });
     });
+
     const video = document.querySelector('video');
     let videoRewardGiven = false;
-    video.addEventListener('ended', () => {
-      if(!videoRewardGiven){
-        coins += 1;
-        localStorage.setItem("moneo", coins.toFixed(2));
-        updateCounter();
-        videoRewardGiven = true;
-      }
-    });
+    if (video) {
+      video.addEventListener('ended', () => {
+        if (!videoRewardGiven) {
+          coins += 1; // Начисляем 1 монету за просмотр видео
+          localStorage.setItem("moneo", coins.toFixed(2));
+          updateCounter();
+          videoRewardGiven = true;
+        }
+      });
+    }
   </script>
 </body>
 </html>
