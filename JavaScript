@@ -1,46 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moneo Quest</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div id="coin-counter">MONEO: 0.00</div>
+document.querySelectorAll(".offer-button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const reward = parseFloat(btn.dataset.reward || "0");
+    let coins = parseFloat(localStorage.getItem("moneo") || "0");
+    coins += reward;
+    localStorage.setItem("moneo", coins.toFixed(2));
+    document.getElementById("coin-counter").textContent = "MONEO: " + coins.toFixed(2);
 
-  <h1>Moneo Quest — Earn Crypto by Completing Quests</h1>
+    if (coins >= 5000 && !localStorage.getItem("submitted")) {
+      document.getElementById("modal").style.display = "block";
+    }
+  });
+});
 
-  <video autoplay muted loop id="bg-video">
-    <source src="https://cdn.coverr.co/videos/coverr-working-on-laptop-5941/1080p.mp4" type="video/mp4">
-  </video>
+document.getElementById("submit").onclick = () => {
+  const email = document.getElementById("email").value;
+  if (email) {
+    alert("Thanks! We will contact you.");
+    localStorage.setItem("submitted", "true");
+    document.getElementById("modal").style.display = "none";
+  }
+};
 
-  <div class="offer-carousel">
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541146&pub=3275147" data-reward="0.3" target="_blank">🧠 Quiz: Unlock Your Mind</a>
-    <a class="offer-button" href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" data-reward="0.5" target="_blank">📲 Survey: Fast Crypto Earn</a>
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541143&pub=3275147" data-reward="0.6" target="_blank">🎮 Play & Win — Mobile Games</a>
-    <!-- Добавь остальные -->
-  </div>
-
-  <div class="ad-banner">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'dc70cdc0d163ed35649ec7e616c3baf',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/dc70cdc0d163ed35649ec7e616c3baf/invoke.js"></script>
-  </div>
-
-  <div id="modal">
-    <p>Congratulations!<br>You've reached 5000 MONEO. Enter your email to withdraw.</p>
-    <input type="email" id="email" placeholder="your@email.com">
-    <button id="submit">Submit</button>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+window.onload = () => {
+  const coins = parseFloat(localStorage.getItem("moneo") || "0");
+  document.getElementById("coin-counter").textContent = "MONEO: " + coins.toFixed(2);
+};
