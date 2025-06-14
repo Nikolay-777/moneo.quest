@@ -1,1 +1,43 @@
-92d0f9899be363f25f2889b9a6f7b94c.html
+document.querySelectorAll(".offer-button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const reward = parseFloat(btn.dataset.reward || "0");
+        let coins = parseFloat(localStorage.getItem("moneo") || "0");
+        coins += reward;
+        localStorage.setItem("moneo", coins.toFixed(2));
+        document.getElementById("coin-counter").textContent = "MONEO: " + coins.toFixed(2);
+        
+        if (coins >= 5000) {
+            document.getElementById("modal").style.display = "block";
+        }
+    });
+});
+
+document.getElementById("close").onclick = function() {
+    document.getElementById("modal").style.display = "none";
+}
+
+document.getElementById("submit").onclick = function() {
+    const email = document.getElementById("email").value;
+    if (email) {
+        // Replace with your API endpoint
+        fetch("/api/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        }).then(response => {
+            alert("Thanks! We will contact you.");
+            localStorage.setItem("submitted", "true");
+            document.getElementById("modal").style.display = "none";
+        }).catch(error => {
+            alert("Error submitting email.");
+        });
+    }
+};
+
+// Check if already submitted
+if (localStorage.getItem("submitted")) {
+    document.getElementById("modal").style.display = "none";
+}
+
