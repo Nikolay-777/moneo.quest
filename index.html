@@ -5,29 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Moneo Quest — Earn Crypto by Completing Quests</title>
   <style>
-    /* Reset and base */
     * {
       box-sizing: border-box;
     }
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
       background: #111;
       color: #fff;
-      text-align: center;
       overflow-x: hidden;
+    }
+    body {
+      position: relative;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      position: relative;
+      text-align: center;
     }
 
-    /* Fullscreen background image with cover and responsiveness */
+    /* Фоновое изображение масштабируется на весь экран и находится позади контента */
     .background-image {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
@@ -155,7 +157,7 @@
       border-radius: 8px;
       user-select: none;
       transition: background-color 0.3s ease;
-      display: none; /* Кнопка временно скрыта */
+      display: none; /* Кнопка отключена, как просили */
     }
     .btn-withdraw:hover:not(:disabled) {
       background-color: #00ffff;
@@ -165,7 +167,7 @@
     .offer-carousel {
       display: flex;
       overflow-x: auto;
-      padding: 0 20px 40px;
+      padding: 0 20px 30px;
       gap: 15px;
       scroll-behavior: smooth;
       user-select: none;
@@ -303,13 +305,13 @@
   </style>
 </head>
 <body>
-  <!-- Фоновое изображение -->
-  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/56b19f76-de44-4fd5-bc98-2247e0cf59ed.png" alt="Поле подсолнухов с золотистым светом и яркой зеленью" class="background-image" />
+  <!-- Fullscreen Background Image -->
+  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/56b19f76-de44-4fd5-bc98-2247e0cf59ed.png" alt="Field of sunflowers with golden warm light, vibrant green leaves under a clear sky" class="background-image" />
 
   <header>
-    <div class="coin-counter" id="coin-counter" aria-live="polite" aria-atomic="true" aria-label="Счетчик монет MONEO">MONEO: 0.00</div>
+    <div class="coin-counter" id="coin-counter" aria-live="polite" aria-atomic="true" aria-label="MONEO coin counter">MONEO: 0.00</div>
     <h1 class="title">Moneo Quest</h1>
-    <div class="lang-switcher" role="navigation" aria-label="Выбор языка">
+    <div class="lang-switcher" role="navigation" aria-label="Select language">
       <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
       <button class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
       <button class="lang-btn" data-lang="it" aria-pressed="false">IT</button>
@@ -320,37 +322,37 @@
   </header>
 
   <p class="description" aria-live="polite" id="description">
-    Выполняя квесты, вы зарабатываете криптовалюту MONEO, которую затем можно вывести и обменять.
+    By completing quests you earn MONEO crypto, which can later be withdrawn and exchanged.
   </p>
 
-  <div class="video-container" aria-label="Видео плеер с рекламой" style="max-width: 900px; margin: 0 auto 30px; border-radius:16px; overflow:hidden; box-shadow: 0 0 30px rgba(0, 255, 255, 0.6); width: 90%;">
+  <div class="video-container" aria-label="Video player with advertisement" style="max-width: 900px; margin: 0 auto 30px; border-radius:16px; overflow:hidden; box-shadow: 0 0 30px rgba(0, 255, 255, 0.6); width: 90%;">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-      Ваш браузер не поддерживает видео.
+      Your browser does not support the video tag.
     </video>
   </div>
 
   <div class="offer-carousel" role="list" style="padding: 0 20px 40px; display: flex; overflow-x: auto; gap: 15px;">
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541146&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.3 MONEO">Quest</a>
-    <a class="offer-button" href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" data-reward="0.5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.5 MONEO">Quest</a>
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541143&pub=3275147" data-reward="0.6" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.6 MONEO">Quest</a>
-    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541135&pub=3275147" data-reward="0.4" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.4 MONEO">Quest</a>
-    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541127&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.3 MONEO">Quest</a>
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541126&pub=3275147" data-reward="0.2" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.2 MONEO">Quest</a>
-    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541124&pub=3275147" data-reward="0.6" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.6 MONEO">Quest</a>
-    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541085&pub=3275147" data-reward="0.4" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.4 MONEO">Quest</a>
-    <a class="offer-button" href="https://lnkmeup.com/view.php?id=5539926&pub=3275147" data-reward="0.5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.5 MONEO">Quest</a>
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5539917&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.3 MONEO">Quest</a>
-    <a class="offer-button" href="https://lnkmeup.com/view.php?id=5539888&pub=3275147" data-reward="0.7" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.7 MONEO">Quest</a>
-    <a class="offer-button" href="https://lnksforyou.com/view.php?id=5539888&pub=3275147" data-reward="0.4" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.4 MONEO">Quest</a>
-    <a class="offer-button" href="https://lnkmeup.com/view.php?id=5541115&pub=3275147" data-reward="0.2" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.2 MONEO">Quest</a>
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541114&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, вознаграждение 0.3 MONEO">Quest</a>
+    <a class="offer-button" href="https://directcpi.com/view.php?id=5541146&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.3 MONEO">Quest</a>
+    <a class="offer-button" href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" data-reward="0.5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.5 MONEO">Quest</a>
+    <a class="offer-button" href="https://directcpi.com/view.php?id=5541143&pub=3275147" data-reward="0.6" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.6 MONEO">Quest</a>
+    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541135&pub=3275147" data-reward="0.4" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.4 MONEO">Quest</a>
+    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541127&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.3 MONEO">Quest</a>
+    <a class="offer-button" href="https://directcpi.com/view.php?id=5541126&pub=3275147" data-reward="0.2" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.2 MONEO">Quest</a>
+    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541124&pub=3275147" data-reward="0.6" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.6 MONEO">Quest</a>
+    <a class="offer-button" href="https://mobtrk.link/view.php?id=5541085&pub=3275147" data-reward="0.4" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.4 MONEO">Quest</a>
+    <a class="offer-button" href="https://lnkmeup.com/view.php?id=5539926&pub=3275147" data-reward="0.5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.5 MONEO">Quest</a>
+    <a class="offer-button" href="https://directcpi.com/view.php?id=5539917&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.3 MONEO">Quest</a>
+    <a class="offer-button" href="https://lnkmeup.com/view.php?id=5539888&pub=3275147" data-reward="0.7" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.7 MONEO">Quest</a>
+    <a class="offer-button" href="https://lnksforyou.com/view.php?id=5539888&pub=3275147" data-reward="0.4" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.4 MONEO">Quest</a>
+    <a class="offer-button" href="https://lnkmeup.com/view.php?id=5541115&pub=3275147" data-reward="0.2" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.2 MONEO">Quest</a>
+    <a class="offer-button" href="https://directcpi.com/view.php?id=5541114&pub=3275147" data-reward="0.3" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 0.3 MONEO">Quest</a>
   </div>
 
-  <div class="banner-row" role="region" aria-label="Нижние баннеры" style="order: 8; margin-top: 20px;">
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e14be16-bfc3-46ae-ae9e-dd9ac881b8b9.png" alt="Баннер 1"/></div>
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83acd119-2769-4d46-b5fb-dde6ceb21c2f.png" alt="Баннер 2"/></div>
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/441efe5b-c8ee-4625-b248-0e420efd6f29.png" alt="Баннер 3"/></div>
+  <div class="banner-row" role="region" aria-label="Bottom banners" style="order: 8; margin-top: 20px;">
+    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e14be16-bfc3-46ae-ae9e-dd9ac881b8b9.png" alt="Banner 1"/></div>
+    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83acd119-2769-4d46-b5fb-dde6ceb21c2f.png" alt="Banner 2"/></div>
+    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/441efe5b-c8ee-4625-b248-0e420efd6f29.png" alt="Banner 3"/></div>
   </div>
 
   <footer style="order: 9;">
@@ -358,17 +360,17 @@
   </footer>
 
   <script>
-    // Загрузить сохраненное количество монет
+    // Load stored coins count
     let coins = parseFloat(localStorage.getItem("moneo") || "0");
     const counterEl = document.getElementById('coin-counter');
 
-    // Обновить счетчик монет
+    // Update coin counter UI
     function updateCounter() {
       counterEl.textContent = "MONEO: " + coins.toFixed(2);
     }
     updateCounter();
 
-    // Добавить обработчики клика на кнопки квестов
+    // Add event listeners on all quest buttons
     document.querySelectorAll(".offer-button").forEach(btn => {
       btn.addEventListener("click", () => {
         const reward = parseFloat(btn.dataset.reward || "0");
