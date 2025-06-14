@@ -5,39 +5,29 @@ document.querySelectorAll(".offer-button").forEach(btn => {
         coins += reward;
         localStorage.setItem("moneo", coins.toFixed(2));
         document.getElementById("coin-counter").textContent = "MONEO: " + coins.toFixed(2);
-        
-        if (coins >= 5000) {
-            document.getElementById("modal").style.display = "block";
+
+        if (coins >= 5000 && !localStorage.getItem("submitted")) {
+            showModal();
         }
     });
 });
 
-document.getElementById("close").onclick = function() {
-    document.getElementById("modal").style.display = "none";
+function showModal() {
+    document.getElementById("modal").style.display = "flex";
 }
 
-document.getElementById("submit").onclick = function() {
-    const email = document.getElementById("email").value;
+document.getElementById("modal-close").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+});
+
+document.getElementById("modal-submit").addEventListener("click", () => {
+    const email = document.getElementById("modal-email").value;
     if (email) {
-        // Replace with your API endpoint
-        fetch("/api/save", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email })
-        }).then(response => {
-            alert("Thanks! We will contact you.");
-            localStorage.setItem("submitted", "true");
-            document.getElementById("modal").style.display = "none";
-        }).catch(error => {
-            alert("Error submitting email.");
-        });
+        // Simulate API call
+        alert("Thanks! We will contact you.");
+        localStorage.setItem("submitted", "true");
+        document.getElementById("modal").style.display = "none";
+    } else {
+        alert("Please enter a valid email.");
     }
-};
-
-// Check if already submitted
-if (localStorage.getItem("submitted")) {
-    document.getElementById("modal").style.display = "none";
-}
-
+});
