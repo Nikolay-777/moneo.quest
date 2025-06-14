@@ -9,23 +9,25 @@
     * {
       box-sizing: border-box;
     }
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
       color: #fff;
-      text-align: center;
-      overflow-x: hidden;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       position: relative;
+      background: #111;
+      text-align: center;
     }
-    /* Fullscreen background image with cover and responsiveness */
-    .background-image {
+    /* Fullscreen background video */
+    #background-video {
       position: fixed;
-      top: 0; left: 0;
+      top: 0; 
+      left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
@@ -38,6 +40,7 @@
       background: rgba(26, 26, 26, 0.8);
       backdrop-filter: blur(8px);
       z-index: 10;
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -78,6 +81,7 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+      z-index: 10;
     }
     video {
       width: 100%;
@@ -91,6 +95,7 @@
       gap: 15px;
       scroll-behavior: smooth;
       user-select: none;
+      z-index: 10;
     }
     .offer-button {
       background: rgba(0,255,255,0.15);
@@ -129,6 +134,7 @@
       justify-content: center;
       gap: 15px;
       user-select: none;
+      z-index: 10;
     }
     .banner {
       flex: 1 1 300px;
@@ -152,16 +158,18 @@
       color: #777;
       margin: 20px 0 60px;
       user-select: none;
+      z-index: 10;
+      position: relative;
     }
     @media(max-width: 768px) {
       header {
         justify-content: center;
+        flex-wrap: wrap;
       }
       .title {
         font-size: 2.5rem;
         white-space: normal;
         flex-basis: 100%;
-        text-align: center;
       }
       .description {
         margin: 15px 10px 20px;
@@ -190,65 +198,66 @@
   </style>
 </head>
 <body>
-  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/56b19f76-de44-4fd5-bc98-2247e0cf59ed.png" alt="Поле подсолнухов с теплым освещением и яркой зеленью" class="background-image" />
+  <!-- Background video as page background -->
+  <video id="background-video" autoplay muted loop playsinline>
+    <source src="https://cdn.dribbble.com/users/2448017/screenshots/6556858/media/65a508118f45e2f5cbde465ccb26515a.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
   <header>
     <h1 class="title">Moneo Quest</h1>
   </header>
-  <p class="description" id="description" aria-live="polite">
+  <p class="description" aria-live="polite">
     By completing quests you earn MONEO crypto, which can later be withdrawn and exchanged.
   </p>
-  <div class="video-container" aria-label="Видео плеер с рекламой" style="max-width:900px; margin:0 auto 30px; border-radius:16px; overflow:hidden; box-shadow:0 0 30px rgba(0,255,255,0.6); width:90%;">
+  <div class="video-container" aria-label="Video player with advertisement">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-      Ваш браузер не поддерживает видео.
+      Your browser does not support the video tag.
     </video>
   </div>
-  <div class="offer-carousel" role="list" style="padding:0 20px 40px; display:flex; overflow-x:auto; gap:15px;">
-    <a href="https://directcpi.com/view.php?id=5541146&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5541143&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541135&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541127&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5541126&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541124&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541085&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://lnkmeup.com/view.php?id=5539926&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5539917&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://lnkmeup.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://lnksforyou.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://lnkmeup.com/view.php?id=5541115&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5541114&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Квест, 5 монет награда">Quest</a>
+  <div class="offer-carousel" role="list">
+    <a href="https://directcpi.com/view.php?id=5541146&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://directcpi.com/view.php?id=5541143&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://mobtrk.link/view.php?id=5541135&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://mobtrk.link/view.php?id=5541127&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://directcpi.com/view.php?id=5541126&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://mobtrk.link/view.php?id=5541124&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://mobtrk.link/view.php?id=5541085&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://lnkmeup.com/view.php?id=5539926&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://directcpi.com/view.php?id=5539917&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://lnkmeup.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://lnksforyou.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://lnkmeup.com/view.php?id=5541115&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    <a href="https://directcpi.com/view.php?id=5541114&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
   </div>
-  <div class="banner-row" role="region" aria-label="Нижние баннеры" style="order: 8; margin-top: 20px;">
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e14be16-bfc3-46ae-ae9e-dd9ac881b8b9.png" alt="Баннер 1"/></div>
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83acd119-2769-4d46-b5fb-dde6ceb21c2f.png" alt="Баннер 2"/></div>
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/441efe5b-c8ee-4625-b248-0e420efd6f29.png" alt="Баннер 3"/></div>
+  <div class="banner-row" role="region" aria-label="Bottom banners" style="margin-top: 20px;">
+    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e14be16-bfc3-46ae-ae9e-dd9ac881b8b9.png" alt="Banner 1" /></div>
+    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83acd119-2769-4d46-b5fb-dde6ceb21c2f.png" alt="Banner 2" /></div>
+    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/441efe5b-c8ee-4625-b248-0e420efd6f29.png" alt="Banner 3" /></div>
   </div>
-  <footer style="order: 9;">
-    © 2025 | Moneo Quest — Created by AI Technologies & Azovstal Foundation | Все права защищены
+  <footer>
+    © 2025 | Moneo Quest — Created by AI Technologies & Azovstal Foundation | All rights reserved
   </footer>
   <script>
-    // Логика начисления монет
     let coins = parseFloat(localStorage.getItem("moneo") || "0");
-    const updateCounter = () => {
+    function updateCounter() {
       console.log("Current MONEO balance:", coins.toFixed(2));
-    };
+    }
     updateCounter();
-
-    document.querySelectorAll(".offer-button").forEach(button => {
-      button.addEventListener("click", () => {
-        coins += 5; // Начисляем 5 монет за квест
+    document.querySelectorAll(".offer-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        coins += 5;
         localStorage.setItem("moneo", coins.toFixed(2));
         updateCounter();
       });
     });
-
-    const video = document.querySelector('video');
+    const video = document.querySelector('.video-container > video');
     let videoRewardGiven = false;
     if (video) {
       video.addEventListener('ended', () => {
         if (!videoRewardGiven) {
-          coins += 1; // Начисляем 1 монету за просмотр видео
+          coins += 1;
           localStorage.setItem("moneo", coins.toFixed(2));
           updateCounter();
           videoRewardGiven = true;
