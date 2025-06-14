@@ -7,41 +7,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <main>
         <h1 class="title">Moneo Quest — Earn Crypto by Completing Quests</h1>
-        <video class="video-player" autoplay muted loop>
-            <source src="your-video-url.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="video-wrapper">
+            <video class="video-player" autoplay muted loop playsinline>
+                <source src="https://cdn.coverr.co/videos/coverr-space.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
         <div id="coin-counter">MONEO: 0.00</div>
         <div class="offer-carousel">
             <a class="offer-button" href="https://directcpi.com/view.php?id=5541146&pub=3275147" data-reward="0.3" target="_blank">🧠 Quiz: Unlock Your Mind</a>
             <a class="offer-button" href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" data-reward="0.5" target="_blank">📲 Survey: Fast Crypto Earn</a>
             <a class="offer-button" href="https://directcpi.com/view.php?id=5541143&pub=3275147" data-reward="0.6" target="_blank">🎮 Play & Win — Mobile Games</a>
             <a class="offer-button" href="https://mobtrk.link/view.php?id=5541135&pub=3275147" data-reward="0.4" target="_blank">💸 Get Paid for Signup</a>
-            <!-- Add more buttons as needed -->
+            <a class="offer-button" href="https://mobtrk.link/view.php?id=5541127&pub=3275147" data-reward="0.3" target="_blank">🔐 Test Privacy Tool</a>
+            <a class="offer-button" href="https://directcpi.com/view.php?id=5541126&pub=3275147" data-reward="0.2" target="_blank">🛒 Register & Save</a>
+            <a class="offer-button" href="https://mobtrk.link/view.php?id=5541124&pub=3275147" data-reward="0.6" target="_blank">📦 Instant Trial Access</a>
+            <a class="offer-button" href="https://mobtrk.link/view.php?id=5541085&pub=3275147" data-reward="0.4" target="_blank">🎯 Crypto Quiz Quest</a>
         </div>
-        <div class="banner-carousel">
-            <div class="banner">
-                <script type="text/javascript" src="https://www.ADSTERRA-LINK.js"></script>
-            </div>
-            <div class="banner">
-                <script async="async" data-cfasync="false" src="//up.exoclick.com/tag.js"></script>
-                <ins class="adsbyexoclick" data-zoneid="123456"></ins>
-            </div>
-            <div class="banner">
-                <script type="text/javascript" src="https://js.hilltopads.com/ads.js"></script>
-            </div>
-        </div>
-    </div>
-    <div class="modal" id="modal">
+    </main>
+
+    <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close" id="close">&times;</span>
-            <p>You've reached 5000 MONEO. Enter your email to withdraw.</p>
-            <input type="email" id="email" placeholder="Your email">
-            <button id="submit">Submit</button>
+            <span class="close-btn" id="modal-close">&times;</span>
+            <p>Congratulations! You’ve reached 5000 MONEO. Enter your email to withdraw.</p>
+            <input type="email" id="modal-email" placeholder="your.email@example.com" required>
+            <button id="modal-submit">Submit</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
+
