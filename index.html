@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moneo Quest</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moneo Quest</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="coin-counter">MONEO: 0.00</div>
+    <main>
+        <h1 class="title">Moneo Quest — Earn Crypto by Completing Quests</h1>
+        <div class="video-wrapper">
+            <video class="video-player" autoplay muted loop playsinline>
+                <source src="https://cdn.coverr.co/videos/coverr-space.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div id="coin-counter">MONEO: 0.00</div>
+        <div class="offer-carousel">
+            <a class="offer-button" href="https://directcpi.com/view.php?id=5541146&pub=3275147" data-reward="0.3" target="_blank">🧠 Quiz: Unlock Your Mind</a>
+            <a class="offer-button" href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" data-reward="0.5" target="_blank">📲 Survey: Fast Crypto Earn</a>
+            <a class="offer-button" href="https://directcpi.com/view.php?id=5541143&pub=3275147" data-reward="0.6" target="_blank">🎮 Play & Win — Mobile Games</a>
+            <a class="offer-button" href="https://mobtrk.link/view.php?id=5541135&pub=3275147" data-reward="0.4" target="_blank">💸 Get Paid for Signup</a>
+            <a class="offer-button" href="https://mobtrk.link/view.php?id=5541127&pub=3275147" data-reward="0.3" target="_blank">🔐 Test Privacy Tool</a>
+            <a class="offer-button" href="https://directcpi.com/view.php?id=5541126&pub=3275147" data-reward="0.2" target="_blank">🛒 Register & Save</a>
+            <a class="offer-button" href="https://mobtrk.link/view.php?id=5541124&pub=3275147" data-reward="0.6" target="_blank">📦 Instant Trial Access</a>
+            <a class="offer-button" href="https://mobtrk.link/view.php?id=5541085&pub=3275147" data-reward="0.4" target="_blank">🎯 Crypto Quiz Quest</a>
+        </div>
+    </main>
 
-  <h1>Moneo Quest — Earn Crypto by Completing Quests</h1>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="modal-close">&times;</span>
+            <p>Congratulations! You’ve reached 5000 MONEO. Enter your email to withdraw.</p>
+            <input type="email" id="modal-email" placeholder="your.email@example.com" required>
+            <button id="modal-submit">Submit</button>
+        </div>
+    </div>
 
-  <video autoplay muted loop id="bg-video">
-    <source src="https://cdn.coverr.co/videos/coverr-working-on-laptop-5941/1080p.mp4" type="video/mp4">
-  </video>
-
-  <div class="offer-carousel">
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541146&pub=3275147" data-reward="0.3" target="_blank">🧠 Quiz: Unlock Your Mind</a>
-    <a class="offer-button" href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" data-reward="0.5" target="_blank">📲 Survey: Fast Crypto Earn</a>
-    <a class="offer-button" href="https://directcpi.com/view.php?id=5541143&pub=3275147" data-reward="0.6" target="_blank">🎮 Play & Win — Mobile Games</a>
-    <!-- Добавь остальные -->
-  </div>
-
-  <div class="ad-banner">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'dc70cdc0d163ed35649ec7e616c3baf',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/dc70cdc0d163ed35649ec7e616c3baf/invoke.js"></script>
-  </div>
-
-  <div id="modal">
-    <p>Congratulations!<br>You've reached 5000 MONEO. Enter your email to withdraw.</p>
-    <input type="email" id="email" placeholder="your@email.com">
-    <button id="submit">Submit</button>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
