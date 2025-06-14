@@ -14,7 +14,6 @@
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
-      background: #111;
       color: #fff;
       text-align: center;
       overflow-x: hidden;
@@ -39,11 +38,9 @@
       background: rgba(26, 26, 26, 0.8);
       backdrop-filter: blur(8px);
       z-index: 10;
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-wrap: nowrap;
     }
     .title {
       font-size: 3rem;
@@ -86,9 +83,6 @@
       width: 100%;
       height: auto;
       display: block;
-    }
-    .btn-withdraw {
-      display: none;
     }
     .offer-carousel {
       display: flex;
@@ -237,16 +231,13 @@
     // Логика начисления монет
     let coins = parseFloat(localStorage.getItem("moneo") || "0");
     const updateCounter = () => {
-      // Счетчик не отображается, так что обновлять элемент счетчика не нужно
-      // Можно здесь логировать или использовать для дальнейшей логики
       console.log("Current MONEO balance:", coins.toFixed(2));
     };
     updateCounter();
 
     document.querySelectorAll(".offer-button").forEach(button => {
       button.addEventListener("click", () => {
-        // Начисляем 5 монет за квест
-        coins += 5;
+        coins += 5; // Начисляем 5 монет за квест
         localStorage.setItem("moneo", coins.toFixed(2));
         updateCounter();
       });
