@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Moneo Quest — Earn Crypto by Completing Quests</title>
   <style>
-    /* Reset and base */
-    * {
+    /* Reset */
+    *, *::before, *::after {
       box-sizing: border-box;
     }
     html, body {
@@ -14,20 +14,19 @@
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
+      background: #111;
       color: #fff;
-      overflow: hidden;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       position: relative;
-      background: #111;
       text-align: center;
     }
-    /* Fullscreen background video */
+    /* Background video */
     #background-video {
       position: fixed;
-      top: 0; 
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
@@ -37,7 +36,7 @@
     }
     header {
       padding: 20px;
-      background: rgba(26, 26, 26, 0.8);
+      background: rgba(26,26,26,0.8);
       backdrop-filter: blur(8px);
       z-index: 10;
       position: relative;
@@ -70,8 +69,10 @@
       user-select: none;
       text-align: center;
       min-height: 3em;
-      padding: 0 10px;
+      padding: 0 15px;
       box-sizing: border-box;
+      position: relative;
+      z-index: 10;
     }
     .video-container {
       position: relative;
@@ -80,10 +81,10 @@
       margin: 0 auto 30px auto;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+      box-shadow: 0 0 30px rgba(0,255,255,0.6);
       z-index: 10;
     }
-    video {
+    .video-player {
       width: 100%;
       height: auto;
       display: block;
@@ -95,6 +96,7 @@
       gap: 15px;
       scroll-behavior: smooth;
       user-select: none;
+      position: relative;
       z-index: 10;
     }
     .offer-button {
@@ -102,28 +104,27 @@
       color: #0ff;
       text-decoration: none;
       padding: 16px 24px;
-      border-radius: 12px;
+      border-radius: 20px;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
       white-space: nowrap;
       box-shadow:
-        0 0 5px #00ffff,
-        inset 0 0 8px #33ffff;
-      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        0 0 8px #00ffff,
+        inset 0 0 10px #33ffff;
+      text-align: center;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
       flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 120px;
+      min-width: 140px;
       user-select: text;
     }
     .offer-button:hover,
     .offer-button:focus {
       background: #00ffff;
-      color: #111;
-      box-shadow:
-        0 0 15px #00ffff,
-        inset 0 0 20px #66ffff;
+      color: #000;
+      box-shadow: 0 0 20px #00ffff, inset 0 0 20px #66ffff;
       outline: none;
     }
     .banner-row {
@@ -134,15 +135,16 @@
       justify-content: center;
       gap: 15px;
       user-select: none;
+      position: relative;
       z-index: 10;
     }
     .banner {
       flex: 1 1 300px;
-      max-width: 300px;
+      max-width: 320px;
       height: 90px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.6);
-      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.65);
+      box-shadow: 0 0 20px rgba(0,255,255,0.5);
       overflow: hidden;
       position: relative;
       user-select: none;
@@ -152,114 +154,119 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      border-radius: 18px;
     }
     footer {
+      text-align: center;
       font-size: 12px;
       color: #777;
       margin: 20px 0 60px;
       user-select: none;
-      z-index: 10;
       position: relative;
+      z-index: 10;
     }
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       header {
         justify-content: center;
         flex-wrap: wrap;
       }
       .title {
-        font-size: 2.5rem;
-        white-space: normal;
+        font-size: 2.2rem;
         flex-basis: 100%;
+        white-space: normal;
       }
       .description {
-        margin: 15px 10px 20px;
+        margin: 15px 15px 20px;
         font-size: 1rem;
       }
       .offer-button {
-        min-width: 100px;
-        padding: 12px 16px;
-        font-size: 0.9rem;
+        min-width: 110px;
+        padding: 14px 20px;
+        font-size: 1rem;
       }
       .video-container {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
       }
       .banner-row {
         width: 90vw;
         flex-wrap: wrap;
         gap: 15px;
-        margin-bottom: 100px;
+        margin-bottom: 80px;
       }
       .banner {
         width: 100%;
-        height: 90px;
+        height: 80px;
+        max-width: unset;
+        border-radius: 14px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Background video as page background -->
   <video id="background-video" autoplay muted loop playsinline>
     <source src="https://cdn.dribbble.com/users/2448017/screenshots/6556858/media/65a508118f45e2f5cbde465ccb26515a.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
-  <header>
-    <h1 class="title">Moneo Quest</h1>
-  </header>
-  <p class="description" aria-live="polite">
-    By completing quests you earn MONEO crypto, which can later be withdrawn and exchanged.
-  </p>
-  <div class="video-container" aria-label="Video player with advertisement">
-    <video autoplay muted loop playsinline>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+  <div class="content">
+    <header>
+      <h1 class="title">Moneo Quest</h1>
+    </header>
+    <p class="description" aria-live="polite">
+      By completing quests you earn MONEO crypto, which can later be withdrawn and exchanged.
+    </p>
+    <div class="video-container" aria-label="Video player with advertisement">
+      <video autoplay muted loop playsinline class="video-player">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="offer-carousel" role="list">
+      <a href="https://directcpi.com/view.php?id=5541146&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://directcpi.com/view.php?id=5541143&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://mobtrk.link/view.php?id=5541135&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://mobtrk.link/view.php?id=5541127&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://directcpi.com/view.php?id=5541126&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://mobtrk.link/view.php?id=5541124&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://mobtrk.link/view.php?id=5541085&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://lnkmeup.com/view.php?id=5539926&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://directcpi.com/view.php?id=5539917&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://lnkmeup.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://lnksforyou.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://lnkmeup.com/view.php?id=5541115&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+      <a href="https://directcpi.com/view.php?id=5541114&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
+    </div>
+    <div class="banner-row" role="region" aria-label="Bottom banners" style="margin-top: 20px;">
+      <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e14be16-bfc3-46ae-ae9e-dd9ac881b8b9.png" alt="Banner 1" /></div>
+      <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83acd119-2769-4d46-b5fb-dde6ceb21c2f.png" alt="Banner 2" /></div>
+      <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/441efe5b-c8ee-4625-b248-0e420efd6f29.png" alt="Banner 3" /></div>
+    </div>
+    <footer>
+      © 2025 | Moneo Quest — Created by AI Technologies & Azovstal Foundation | All rights reserved
+    </footer>
   </div>
-  <div class="offer-carousel" role="list">
-    <a href="https://directcpi.com/view.php?id=5541146&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://lnksforyou.com/view.php?id=5541144&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5541143&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541135&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541127&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5541126&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541124&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://mobtrk.link/view.php?id=5541085&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://lnkmeup.com/view.php?id=5539926&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5539917&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://lnkmeup.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://lnksforyou.com/view.php?id=5539888&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://lnkmeup.com/view.php?id=5541115&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-    <a href="https://directcpi.com/view.php?id=5541114&pub=3275147" class="offer-button" data-reward="5" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Quest, reward 5 MONEO">Quest</a>
-  </div>
-  <div class="banner-row" role="region" aria-label="Bottom banners" style="margin-top: 20px;">
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e14be16-bfc3-46ae-ae9e-dd9ac881b8b9.png" alt="Banner 1" /></div>
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83acd119-2769-4d46-b5fb-dde6ceb21c2f.png" alt="Banner 2" /></div>
-    <div class="banner"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/441efe5b-c8ee-4625-b248-0e420efd6f29.png" alt="Banner 3" /></div>
-  </div>
-  <footer>
-    © 2025 | Moneo Quest — Created by AI Technologies & Azovstal Foundation | All rights reserved
-  </footer>
   <script>
-    let coins = parseFloat(localStorage.getItem("moneo") || "0");
-    function updateCounter() {
-      console.log("Current MONEO balance:", coins.toFixed(2));
+    let coins = parseFloat(localStorage.getItem('moneo') || '0');
+    function updateBalance() {
+      console.log('Current MONEO balance:', coins.toFixed(2));
     }
-    updateCounter();
-    document.querySelectorAll(".offer-button").forEach(btn => {
-      btn.addEventListener("click", () => {
+    updateBalance();
+    document.querySelectorAll('.offer-button').forEach(btn => {
+      btn.addEventListener('click', () => {
         coins += 5;
-        localStorage.setItem("moneo", coins.toFixed(2));
-        updateCounter();
+        localStorage.setItem('moneo', coins.toFixed(2));
+        updateBalance();
       });
     });
-    const video = document.querySelector('.video-container > video');
+    const videoPlayer = document.querySelector('.video-container > video');
     let videoRewardGiven = false;
-    if (video) {
-      video.addEventListener('ended', () => {
+    if (videoPlayer) {
+      videoPlayer.addEventListener('ended', () => {
         if (!videoRewardGiven) {
           coins += 1;
-          localStorage.setItem("moneo", coins.toFixed(2));
-          updateCounter();
+          localStorage.setItem('moneo', coins.toFixed(2));
+          updateBalance();
           videoRewardGiven = true;
         }
       });
