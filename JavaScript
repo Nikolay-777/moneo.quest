@@ -1,27 +1,33 @@
 document.querySelectorAll(".offer-button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const reward = parseFloat(btn.dataset.reward || "0");
-    let coins = parseFloat(localStorage.getItem("moneo") || "0");
-    coins += reward;
-    localStorage.setItem("moneo", coins.toFixed(2));
-    document.getElementById("coin-counter").textContent = "MONEO: " + coins.toFixed(2);
+    btn.addEventListener("click", () => {
+        const reward = parseFloat(btn.dataset.reward || "0");
+        let coins = parseFloat(localStorage.getItem("moneo") || "0");
+        coins += reward;
+        localStorage.setItem("moneo", coins.toFixed(2));
+        document.getElementById("coin-counter").textContent = "MONEO: " + coins.toFixed(2);
 
-    if (coins >= 5000 && !localStorage.getItem("submitted")) {
-      document.getElementById("modal").style.display = "block";
-    }
-  });
+        if (coins >= 5000 && !localStorage.getItem("submitted")) {
+            showModal();
+        }
+    });
 });
 
-document.getElementById("submit").onclick = () => {
-  const email = document.getElementById("email").value;
-  if (email) {
-    alert("Thanks! We will contact you.");
-    localStorage.setItem("submitted", "true");
-    document.getElementById("modal").style.display = "none";
-  }
-};
+function showModal() {
+    document.getElementById("modal").style.display = "flex";
+}
 
-window.onload = () => {
-  const coins = parseFloat(localStorage.getItem("moneo") || "0");
-  document.getElementById("coin-counter").textContent = "MONEO: " + coins.toFixed(2);
-};
+document.getElementById("modal-close").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+});
+
+document.getElementById("modal-submit").addEventListener("click", () => {
+    const email = document.getElementById("modal-email").value;
+    if (email) {
+        // Simulate API call
+        alert("Thanks! We will contact you.");
+        localStorage.setItem("submitted", "true");
+        document.getElementById("modal").style.display = "none";
+    } else {
+        alert("Please enter a valid email.");
+    }
+});
