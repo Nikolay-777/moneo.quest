@@ -1,5 +1,0 @@
-self["domain"] = {
-  "id": 9452631,
-  "domain": "couphaithuph.net", // ← Сюда идёт основная загрузка
-  "installed": false
-}
