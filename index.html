@@ -5,7 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Moneo Quest — Видео плеер нормального размера</title>
   <!-- Стили без изменений -->
-  <style>... (оставляем как есть) ...</style>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #0ff;
+      text-align: center;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+    #background-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      user-select: none;
+      pointer-events: none;
+    }
+    header {
+      padding: 20px;
+      background: rgba(26,26,26,0.8);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .title {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #00ffff;
+      text-shadow:
+        0 0 8px #00ffff,
+        0 0 20px #00ffff,
+        0 0 30px #0ff,
+        0 0 40px #0ff,
+        0 0 50px #0ff;
+      user-select: none;
+      margin: 0 auto;
+      white-space: nowrap;
+      text-align: center;
+      flex: 1;
+    }
+    .video-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      margin: 0 auto 30px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,255,255,0.6);
+      z-index: 10;
+      background-color: black;
+    }
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 16px;
+    }
+    .video-buttons-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      user-select: none;
+      position: relative;
+      padding: 0 20px 40px;
+      gap: 15px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      flex-wrap: nowrap;
+      z-index: 10;
+    }
+    button.carousel-button {
+      flex: 0 0 auto;
+      background: rgba(0,255,255,0.15);
+      color: #0ff;
+      border-radius: 24px;
+      padding: 14px 28px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      white-space: nowrap;
+      box-shadow: 0 0 8px #00ffff, inset 0 0 10px #33ffff;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+      min-width: 130px;
+    }
+    .section-label {
+      max-width: 900px;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0ff;
+      text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+      user-select: none;
+      text-align: center;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+    .banner-row {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto 100px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+      padding: 0 10px;
+      box-sizing: border-box;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.8);
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 0 20px #06b6d4;
+    }
+    .banner {
+      flex: 1 1 300px;
+      max-width: 320px;
+      height: 90px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.65);
+      box-shadow: 0 0 20px #0ff;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .banner:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 50px #6ff;
+    }
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      padding: 20px 0 100px;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
   <video id="background-video" autoplay muted loop playsinline>
@@ -22,7 +179,16 @@
 
   <!-- 10 кнопок Video -->
   <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel">
-    <button class="carousel-button" type="button">Video</button> ... (10 раз) ...
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
   </div>
 
   <div class="section-label">Instant Quests</div>
