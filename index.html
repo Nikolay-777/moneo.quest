@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moneo Quest — Полный сайт с исправленной каруселью</title>
+  <title>Moneo Quest — Кнопки чуть больше и выразительней</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -76,12 +76,10 @@
       border-radius: 16px;
     }
     .btn-withdraw { display: none; }
-
-    /* Универсальный стиль карусели */
     .carousel-container {
       max-width: 900px;
       margin: 0 auto 40px;
-      padding: 10px 20px 40px;
+      padding: 0 20px 40px;
       overflow-x: auto;
       white-space: nowrap;
       user-select: none;
@@ -90,8 +88,8 @@
       background-color: rgba(0, 0, 0, 0.8);
       box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.3);
       display: flex;
-      gap: 20px;
-      scroll-behavior: auto; /* отключена автопрокрутка */
+      gap: 25px;  /* увеличено расстояние между кнопками */
+      scroll-behavior: auto;
       flex-wrap: nowrap;
       z-index: 10;
     }
@@ -104,19 +102,21 @@
     }
     button.carousel-button, a.carousel-button {
       flex: 0 0 auto;
-      background: rgba(0, 255, 255, 0.15);
+      background: rgba(0, 255, 255, 0.25);
       color: #0ff;
       border-radius: 24px;
-      padding: 14px 28px;
+      padding: 18px 36px;  /* увеличен padding для более крупного вида */
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.3rem;  /* увеличен размер шрифта */
       white-space: nowrap;
-      box-shadow: 0 0 15px #00ffff, inset 0 0 15px #33ffff;
+      box-shadow:
+        0 0 15px #00ffff,
+        inset 0 0 15px #33ffff;
       cursor: pointer;
       user-select: none;
       text-align: center;
       transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-      min-width: 140px;
+      min-width: 160px; /* увеличена минимальная ширина */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -129,16 +129,18 @@
     button.carousel-button:focus, a.carousel-button:focus {
       background-color: #0ff;
       color: #003f3f;
-      box-shadow: 0 0 30px #0ff, inset 0 0 20px #66ffff;
+      box-shadow:
+        0 0 35px #0ff,
+        inset 0 0 25px #66ffff;
       outline: none;
     }
     .section-label {
       max-width: 900px;
       margin: 0 auto 20px;
-      font-size: 1.8rem;
+      font-size: 2rem; /* увеличен размер заголовка */
       font-weight: 700;
       color: #0ff;
-      text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 25px #0ff;
       user-select: none;
       text-align: center;
       padding: 0 10px;
@@ -164,6 +166,7 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
+      height: 110px;
     }
     .banner {
       flex: 0 0 auto;
@@ -195,6 +198,7 @@
       user-select: none;
       position: relative;
       z-index: 10;
+      margin-bottom: 110px; /* компенсируем место для баннеров */
     }
     @media (max-width: 768px) {
       header {
@@ -212,10 +216,10 @@
       .carousel-container {
         max-width: 95vw;
         padding: 0 15px 40px;
-        background-color: rgba(15,15,25,0.9);
-        box-shadow: inset 0 0 30px #0ff;
-        gap: 15px;
+        background-color: rgba(20,20,30,0.85);
         border-radius: 16px;
+        box-shadow: 0 0 25px #0ff;
+        gap: 20px;
       }
       .carousel-container.wrap {
         max-height: none;
@@ -225,8 +229,8 @@
       }
       button.carousel-button, a.carousel-button {
         min-width: 90px;
-        padding: 10px 16px;
-        font-size: 0.9rem;
+        padding: 12px 16px;
+        font-size: 1.1rem;
       }
       .section-label {
         font-size: 1.5rem;
@@ -244,6 +248,7 @@
         flex-wrap: nowrap;
         gap: 8px;
         overflow-x: auto;
+        height: 110px;
       }
       .banner {
         width: 90px;
@@ -261,6 +266,7 @@
 <body>
   <video id="background-video" autoplay muted loop playsinline>
     <source src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/video/02194a14-9de6-4e2f-8390-60ccbf18a3a4.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
   <header>
     <h1 class="title">Moneo Quest</h1>
@@ -268,9 +274,9 @@
   <div class="video-container" aria-label="Видео плеер с рекламой">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
     </video>
   </div>
-  <!-- Карусель 10 кнопок Video -->
   <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel">
     <button class="carousel-button" type="button">Video</button>
     <button class="carousel-button" type="button">Video</button>
@@ -284,7 +290,6 @@
     <button class="carousel-button" type="button">Video</button>
   </div>
   <div class="section-label">Instant Quests</div>
-  <!-- Карусель 50 кнопок Quest -->
   <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel">
     <script>
       const container50 = document.currentScript.parentNode;
@@ -298,16 +303,15 @@
     </script>
   </div>
   <div class="section-label">Email/Pin Submits Quests</div>
-  <!-- Карусель 100 кнопок Quest в 1 ряд -->
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Hundred Quest Buttons Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap;">
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height: 150px; overflow-x: auto; white-space: nowrap;">
     <script>
-      const container100 = document.currentScript.parentNode;
-      for(let i=0; i<100; i++){
+      const container60 = document.currentScript.parentNode;
+      for(let i=0; i<60; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
         btn.textContent = 'Quest';
-        container100.appendChild(btn);
+        container60.appendChild(btn);
       }
     </script>
   </div>
