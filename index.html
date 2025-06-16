@@ -1,52 +1,329 @@
-.carousel-container {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden; /* запрет вертикальной прокрутки */
-  white-space: nowrap;
-  padding: 0 20px 40px;
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto 40px;
-  flex-wrap: nowrap; /* важно */
-  align-items: center; /* центрируем по вертикали */
-  height: 60px; /* фиксированная высота контейнера */
-  background-color: rgba(0, 0, 0, 0.8); /* темный фон */
-  border-radius: 12px;
-  box-shadow: inset 0 0 15px #0ff;
-  user-select: none;
-  position: relative;
-  z-index: 10;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moneo Quest — Полный сайт с исправленной каруселью</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #0ff;
+      text-align: center;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+    #background-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      user-select: none;
+      pointer-events: none;
+    }
+    header {
+      padding: 20px;
+      background: rgba(26,26,26,0.8);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .title {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #00ffff;
+      text-shadow:
+        0 0 8px #00ffff,
+        0 0 20px #00ffff,
+        0 0 30px #0ff,
+        0 0 40px #0ff,
+        0 0 50px #0ff;
+      user-select: none;
+      margin: 0 auto;
+      white-space: nowrap;
+      text-align: center;
+      flex: 1;
+    }
+    .video-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      margin: 20px auto 40px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,255,255,0.6);
+      z-index: 10;
+      background-color: black;
+    }
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 16px;
+    }
+    .btn-withdraw { display: none; }
 
-.carousel-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  background: rgba(0, 255, 255, 0.2);
-  color: #0ff;
-  border-radius: 24px;
-  padding: 14px 28px;
-  font-weight: 700;
-  font-size: 1.15rem;
-  white-space: nowrap;
-  box-shadow: 0 0 8px #00ffff, inset 0 0 10px #33ffff;
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  min-width: 130px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-  border: none;
-  height: 44px; /* фиксированная высота кнопки */
-  box-sizing: border-box;
-}
-
-/* hover and focus states */
-.carousel-button:hover,
-.carousel-button:focus {
-  background-color: #00ffff;
-  color: #111;
-  outline: none;
-  box-shadow: 0 0 20px #00ffff, inset 0 0 20px #66ffff;
-}
+    /* Универсальный стиль карусели */
+    .carousel-container {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 10px 20px 40px;
+      overflow-x: auto;
+      white-space: nowrap;
+      user-select: none;
+      position: relative;
+      border-radius: 12px;
+      background-color: rgba(0, 0, 0, 0.8);
+      box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.3);
+      display: flex;
+      gap: 20px;
+      scroll-behavior: auto; /* отключена автопрокрутка */
+      flex-wrap: nowrap;
+      z-index: 10;
+    }
+    .carousel-container.wrap {
+      flex-wrap: wrap;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 60px;
+      padding-bottom: 15px;
+    }
+    button.carousel-button, a.carousel-button {
+      flex: 0 0 auto;
+      background: rgba(0, 255, 255, 0.15);
+      color: #0ff;
+      border-radius: 24px;
+      padding: 14px 28px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      white-space: nowrap;
+      box-shadow: 0 0 15px #00ffff, inset 0 0 15px #33ffff;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+      min-width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    button.carousel-button:hover, a.carousel-button:hover,
+    button.carousel-button:focus, a.carousel-button:focus {
+      background-color: #0ff;
+      color: #003f3f;
+      box-shadow: 0 0 30px #0ff, inset 0 0 20px #66ffff;
+      outline: none;
+    }
+    .section-label {
+      max-width: 900px;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0ff;
+      text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+      user-select: none;
+      text-align: center;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+    .banner-row {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26, 26, 26, 0.9);
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 0 30px #06b6d4;
+      user-select: none;
+      z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .banner {
+      flex: 0 0 auto;
+      width: 320px;
+      height: 90px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.75);
+      box-shadow: 0 0 30px #0ff;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-right: 10px;
+      display: inline-block;
+    }
+    .banner:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 70px #6ff;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+    footer {
+      height: 60px;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+    }
+    @media (max-width: 768px) {
+      header {
+        margin-top: 20px;
+      }
+      .title {
+        font-size: 2.5rem;
+      }
+      .video-container {
+        width: 95vw;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin-bottom: 80px;
+      }
+      .carousel-container {
+        max-width: 95vw;
+        padding: 0 15px 40px;
+        background-color: rgba(15,15,25,0.9);
+        box-shadow: inset 0 0 30px #0ff;
+        gap: 15px;
+        border-radius: 16px;
+      }
+      .carousel-container.wrap {
+        max-height: none;
+        height: auto;
+        flex-wrap: nowrap;
+        margin-bottom: 60px;
+      }
+      button.carousel-button, a.carousel-button {
+        min-width: 90px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+      .section-label {
+        font-size: 1.5rem;
+        margin: 15px 10px 20px;
+      }
+      .banner-row {
+        width: 100vw;
+        max-width: 100vw;
+        border-radius: 0;
+        padding: 10px 5px;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        position: fixed;
+        flex-wrap: nowrap;
+        gap: 8px;
+        overflow-x: auto;
+      }
+      .banner {
+        width: 90px;
+        height: 90px;
+        max-width: 90px;
+        border-radius: 10px;
+        margin-right: 8px;
+      }
+      footer {
+        margin-bottom: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video id="background-video" autoplay muted loop playsinline>
+    <source src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/video/02194a14-9de6-4e2f-8390-60ccbf18a3a4.mp4" type="video/mp4" />
+  </video>
+  <header>
+    <h1 class="title">Moneo Quest</h1>
+  </header>
+  <div class="video-container" aria-label="Видео плеер с рекламой">
+    <video autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <!-- Карусель 10 кнопок Video -->
+  <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel">
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+  </div>
+  <div class="section-label">Instant Quests</div>
+  <!-- Карусель 50 кнопок Quest -->
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel">
+    <script>
+      const container50 = document.currentScript.parentNode;
+      for(let i=0; i<50; i++){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'carousel-button';
+        btn.textContent = 'Quest';
+        container50.appendChild(btn);
+      }
+    </script>
+  </div>
+  <div class="section-label">Email/Pin Submits Quests</div>
+  <!-- Карусель 100 кнопок Quest в 1 ряд -->
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Hundred Quest Buttons Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap;">
+    <script>
+      const container100 = document.currentScript.parentNode;
+      for(let i=0; i<100; i++){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'carousel-button';
+        btn.textContent = 'Quest';
+        container100.appendChild(btn);
+      }
+    </script>
+  </div>
+  <div class="banner-row" role="region" aria-label="Нижние баннеры">
+    <div class="banner">
+      <script type="text/javascript" src="https://www.profitabledisplaynetwork.com/71c70059c7bb3b6fc3a65a0a29c4e7db/invoke.js"></script>
+    </div>
+    <div class="banner">
+      <script async="async" data-cfasync="false" src="//up.exoclick.com/tag.js"></script>
+      <ins class="adsbyexoclick" data-zoneid="000000"></ins>
+      <script>(adsbyexoclick = window.adsbyexoclick || []).push({});</script>
+    </div>
+    <div class="banner">
+      <script type="text/javascript" src="https://cdn.hilltopads.net/popup.js"></script>
+    </div>
+  </div>
+  <footer></footer>
+</body>
+</html>
