@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moneo Quest — Кнопки чуть больше и выразительней</title>
+  <title>Moneo Quest — По вашим пунктам</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
     }
     html, body {
-      margin: 0; padding: 0; height: 100%;
+      margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: Arial, sans-serif;
       background: #111;
       color: #0ff;
@@ -22,7 +24,8 @@
     }
     #background-video {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
@@ -32,7 +35,7 @@
     }
     header {
       padding: 20px;
-      background: rgba(26,26,26,0.8);
+      background: rgba(26, 26, 26, 0.8);
       backdrop-filter: blur(8px);
       z-index: 10;
       position: relative;
@@ -44,27 +47,23 @@
       font-size: 3rem;
       font-weight: 900;
       color: #00ffff;
-      text-shadow:
-        0 0 8px #00ffff,
-        0 0 20px #00ffff,
-        0 0 30px #0ff,
-        0 0 40px #0ff,
-        0 0 50px #0ff;
+      text-shadow: 0 0 8px #00ffff, 0 0 20px #00ffff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff;
       user-select: none;
       margin: 0 auto;
       white-space: nowrap;
       text-align: center;
       flex: 1;
     }
+    /* 1. Увеличенный плеер */
     .video-container {
       position: relative;
-      width: 90%;
-      max-width: 900px;
+      width: 100%;
+      max-width: 1300px; /* увеличена ширина плеера */
       aspect-ratio: 16 / 9;
-      margin: 20px auto 40px auto;
+      margin: 20px auto 60px auto; /* увеличен нижний отступ для карусели */
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(0,255,255,0.6);
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.8); /* более яркая тень */
       z-index: 10;
       background-color: black;
     }
@@ -75,23 +74,30 @@
       display: block;
       border-radius: 16px;
     }
-    .btn-withdraw { display: none; }
+    .btn-withdraw {
+      display: none;
+    }
+    /* 2. Опущены все карусели */
     .carousel-container {
       max-width: 900px;
-      margin: 0 auto 40px;
+      margin: 50px auto 40px; /* добавлен верхний отступ для опускания каруселей */
       padding: 0 20px 40px;
       overflow-x: auto;
+      overflow-y: hidden;
       white-space: nowrap;
       user-select: none;
       position: relative;
       border-radius: 12px;
       background-color: rgba(0, 0, 0, 0.8);
-      box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.3);
+      box-shadow: inset 0 0 25px rgba(0, 255, 255, 0.3);
       display: flex;
-      gap: 25px;  /* увеличено расстояние между кнопками */
+      gap: 25px;
       scroll-behavior: auto;
       flex-wrap: nowrap;
+      height: 60px;
+      align-items: center;
       z-index: 10;
+      margin-top: 5px; /* опущено на пол сантиметра */
     }
     .carousel-container.wrap {
       flex-wrap: wrap;
@@ -99,24 +105,24 @@
       overflow-y: auto;
       margin-bottom: 60px;
       padding-bottom: 15px;
+      height: auto;
     }
-    button.carousel-button, a.carousel-button {
+    button.carousel-button,
+    a.carousel-button {
       flex: 0 0 auto;
       background: rgba(0, 255, 255, 0.25);
       color: #0ff;
       border-radius: 24px;
-      padding: 18px 36px;  /* увеличен padding для более крупного вида */
+      padding: 18px 36px;
       font-weight: 700;
-      font-size: 1.3rem;  /* увеличен размер шрифта */
+      font-size: 1.3rem;
       white-space: nowrap;
-      box-shadow:
-        0 0 15px #00ffff,
-        inset 0 0 15px #33ffff;
+      box-shadow: 0 0 20px #00ffff, inset 0 0 20px #33ffff;
       cursor: pointer;
       user-select: none;
       text-align: center;
       transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-      min-width: 160px; /* увеличена минимальная ширина */
+      min-width: 160px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -124,142 +130,47 @@
       border: none;
       overflow: hidden;
       text-overflow: ellipsis;
+      height: 44px;
+      box-sizing: border-box;
     }
-    button.carousel-button:hover, a.carousel-button:hover,
-    button.carousel-button:focus, a.carousel-button:focus {
+    button.carousel-button:hover,
+    a.carousel-button:hover {
       background-color: #0ff;
       color: #003f3f;
-      box-shadow:
-        0 0 35px #0ff,
-        inset 0 0 25px #66ffff;
+      box-shadow: 0 0 35px #0ff, inset 0 0 25px #66ffff;
       outline: none;
     }
     .section-label {
       max-width: 900px;
       margin: 0 auto 20px;
-      font-size: 2rem; /* увеличен размер заголовка */
+      font-size: 1.8rem;
       font-weight: 700;
       color: #0ff;
-      text-shadow: 0 0 10px #0ff, 0 0 25px #0ff;
+      text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
       user-select: none;
       text-align: center;
       padding: 0 10px;
       box-sizing: border-box;
     }
+    /* 3. Все блоки растянуты до низа (отступы увеличены) */
+    body > *:not(footer) {
+      margin-bottom: 50px; /* увеличен отступ между блоками */
+    }
+    /* Баннеры убраны */
     .banner-row {
-      width: 100%;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 15px 20px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(26, 26, 26, 0.9);
-      border-radius: 12px 12px 0 0;
-      box-shadow: 0 0 30px #06b6d4;
-      user-select: none;
-      z-index: 1000;
-      overflow-x: auto;
-      white-space: nowrap;
-      height: 110px;
-    }
-    .banner {
-      flex: 0 0 auto;
-      width: 320px;
-      height: 90px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.75);
-      box-shadow: 0 0 30px #0ff;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-right: 10px;
-      display: inline-block;
-    }
-    .banner:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 70px #6ff;
-    }
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
+      display: none;
     }
     footer {
-      height: 60px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      padding: 20px 0;
       user-select: none;
       position: relative;
       z-index: 10;
-      margin-bottom: 110px; /* компенсируем место для баннеров */
-    }
-    @media (max-width: 768px) {
-      header {
-        margin-top: 20px;
-      }
-      .title {
-        font-size: 2.5rem;
-      }
-      .video-container {
-        width: 95vw;
-        height: auto;
-        aspect-ratio: 16 / 9;
-        margin-bottom: 80px;
-      }
-      .carousel-container {
-        max-width: 95vw;
-        padding: 0 15px 40px;
-        background-color: rgba(20,20,30,0.85);
-        border-radius: 16px;
-        box-shadow: 0 0 25px #0ff;
-        gap: 20px;
-      }
-      .carousel-container.wrap {
-        max-height: none;
-        height: auto;
-        flex-wrap: nowrap;
-        margin-bottom: 60px;
-      }
-      button.carousel-button, a.carousel-button {
-        min-width: 90px;
-        padding: 12px 16px;
-        font-size: 1.1rem;
-      }
-      .section-label {
-        font-size: 1.5rem;
-        margin: 15px 10px 20px;
-      }
-      .banner-row {
-        width: 100vw;
-        max-width: 100vw;
-        border-radius: 0;
-        padding: 10px 5px;
-        bottom: 0;
-        left: 0;
-        transform: none;
-        position: fixed;
-        flex-wrap: nowrap;
-        gap: 8px;
-        overflow-x: auto;
-        height: 110px;
-      }
-      .banner {
-        width: 90px;
-        height: 90px;
-        max-width: 90px;
-        border-radius: 10px;
-        margin-right: 8px;
-      }
-      footer {
-        margin-bottom: 90px;
-      }
+      margin-top: auto; /* фиксированное положение внизу */
+      background: rgba(26, 26, 26, 0.8);
+      box-shadow: 0 -3px 15px #06b6d4;
     }
   </style>
 </head>
@@ -274,9 +185,11 @@
   <div class="video-container" aria-label="Видео плеер с рекламой">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
+      Ваш браузер не поддерживает видео.
     </video>
   </div>
+
+  <!-- Карусель 10 кнопок Video -->
   <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel">
     <button class="carousel-button" type="button">Video</button>
     <button class="carousel-button" type="button">Video</button>
@@ -289,11 +202,14 @@
     <button class="carousel-button" type="button">Video</button>
     <button class="carousel-button" type="button">Video</button>
   </div>
+
   <div class="section-label">Instant Quests</div>
+
+  <!-- Карусель 50 кнопок Quest -->
   <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel">
     <script>
       const container50 = document.currentScript.parentNode;
-      for(let i=0; i<50; i++){
+      for(let i = 0; i < 50; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
@@ -302,32 +218,25 @@
       }
     </script>
   </div>
+
   <div class="section-label">Email/Pin Submits Quests</div>
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height: 150px; overflow-x: auto; white-space: nowrap;">
+
+  <!-- Карусель 100 кнопок Quest -->
+  <div class="large-quest-carousel carousel-container wrap" role="list" aria-label="Hundred Quest Buttons Carousel" style="max-height:400px; overflow-y:auto;">
     <script>
-      const container60 = document.currentScript.parentNode;
-      for(let i=0; i<60; i++){
+      const container100 = document.currentScript.parentNode;
+      for(let i = 0; i < 100; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
         btn.textContent = 'Quest';
-        container60.appendChild(btn);
+        container100.appendChild(btn);
       }
     </script>
   </div>
-  <div class="banner-row" role="region" aria-label="Нижние баннеры">
-    <div class="banner">
-      <script type="text/javascript" src="https://www.profitabledisplaynetwork.com/71c70059c7bb3b6fc3a65a0a29c4e7db/invoke.js"></script>
-    </div>
-    <div class="banner">
-      <script async="async" data-cfasync="false" src="//up.exoclick.com/tag.js"></script>
-      <ins class="adsbyexoclick" data-zoneid="000000"></ins>
-      <script>(adsbyexoclick = window.adsbyexoclick || []).push({});</script>
-    </div>
-    <div class="banner">
-      <script type="text/javascript" src="https://cdn.hilltopads.net/popup.js"></script>
-    </div>
-  </div>
-  <footer></footer>
+
+  <footer>
+    © 2025 | Moneo Quest — Created by AI Technologies | All rights reserved
+  </footer>
 </body>
 </html>
