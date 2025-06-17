@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moneo Quest — По вашим пунктам</title>
+  <title>Moneo Quest — Видео кнопки с отступом</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
     }
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+      margin: 0; padding: 0; height: 100%;
       font-family: Arial, sans-serif;
       background: #111;
       color: #0ff;
@@ -24,8 +22,7 @@
     }
     #background-video {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
@@ -35,7 +32,7 @@
     }
     header {
       padding: 20px;
-      background: rgba(26, 26, 26, 0.8);
+      background: rgba(26,26,26,0.8);
       backdrop-filter: blur(8px);
       z-index: 10;
       position: relative;
@@ -47,23 +44,27 @@
       font-size: 3rem;
       font-weight: 900;
       color: #00ffff;
-      text-shadow: 0 0 8px #00ffff, 0 0 20px #00ffff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff;
+      text-shadow:
+        0 0 8px #00ffff,
+        0 0 20px #00ffff,
+        0 0 30px #0ff,
+        0 0 40px #0ff,
+        0 0 50px #0ff;
       user-select: none;
       margin: 0 auto;
       white-space: nowrap;
       text-align: center;
       flex: 1;
     }
-    /* 1. Увеличенный плеер */
     .video-container {
       position: relative;
-      width: 100%;
-      max-width: 1300px; /* увеличена ширина плеера */
+      width: 95vw;
+      max-width: 1300px;
       aspect-ratio: 16 / 9;
-      margin: 20px auto 60px auto; /* увеличен нижний отступ для карусели */
+      margin: 20px auto 60px auto;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 0 50px rgba(0, 255, 255, 0.8); /* более яркая тень */
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
       z-index: 10;
       background-color: black;
     }
@@ -74,13 +75,10 @@
       display: block;
       border-radius: 16px;
     }
-    .btn-withdraw {
-      display: none;
-    }
-    /* 2. Опущены все карусели */
+    .btn-withdraw { display: none; }
     .carousel-container {
       max-width: 900px;
-      margin: 50px auto 40px; /* добавлен верхний отступ для опускания каруселей */
+      margin: 0 auto 40px;
       padding: 0 20px 40px;
       overflow-x: auto;
       overflow-y: hidden;
@@ -88,8 +86,8 @@
       user-select: none;
       position: relative;
       border-radius: 12px;
-      background-color: rgba(0, 0, 0, 0.8);
-      box-shadow: inset 0 0 25px rgba(0, 255, 255, 0.3);
+      background-color: rgba(0,0,0,0.8);
+      box-shadow: inset 0 0 20px rgba(0,255,255,0.3);
       display: flex;
       gap: 25px;
       scroll-behavior: auto;
@@ -97,7 +95,7 @@
       height: 60px;
       align-items: center;
       z-index: 10;
-      margin-top: 5px; /* опущено на пол сантиметра */
+      margin-top: 5px; /* Опущена на пол сантиметра (5px) от видео плеера */
     }
     .carousel-container.wrap {
       flex-wrap: wrap;
@@ -107,17 +105,16 @@
       padding-bottom: 15px;
       height: auto;
     }
-    button.carousel-button,
-    a.carousel-button {
+    button.carousel-button, a.carousel-button {
       flex: 0 0 auto;
-      background: rgba(0, 255, 255, 0.25);
+      background: rgba(0,255,255,0.25);
       color: #0ff;
       border-radius: 24px;
       padding: 18px 36px;
       font-weight: 700;
       font-size: 1.3rem;
       white-space: nowrap;
-      box-shadow: 0 0 20px #00ffff, inset 0 0 20px #33ffff;
+      box-shadow: 0 0 15px #00ffff, inset 0 0 15px #33ffff;
       cursor: pointer;
       user-select: none;
       text-align: center;
@@ -152,25 +149,12 @@
       padding: 0 10px;
       box-sizing: border-box;
     }
-    /* 3. Все блоки растянуты до низа (отступы увеличены) */
-    body > *:not(footer) {
-      margin-bottom: 50px; /* увеличен отступ между блоками */
-    }
-    /* Баннеры убраны */
-    .banner-row {
-      display: none;
-    }
     footer {
-      text-align: center;
-      font-size: 14px;
-      color: #888;
-      padding: 20px 0;
+      height: 40px;
       user-select: none;
       position: relative;
       z-index: 10;
-      margin-top: auto; /* фиксированное положение внизу */
-      background: rgba(26, 26, 26, 0.8);
-      box-shadow: 0 -3px 15px #06b6d4;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -185,7 +169,7 @@
   <div class="video-container" aria-label="Видео плеер с рекламой">
     <video autoplay muted loop playsinline>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-      Ваш браузер не поддерживает видео.
+      Your browser does not support the video tag.
     </video>
   </div>
 
@@ -209,7 +193,7 @@
   <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel">
     <script>
       const container50 = document.currentScript.parentNode;
-      for(let i = 0; i < 50; i++){
+      for (let i=0; i<50; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
@@ -221,16 +205,16 @@
 
   <div class="section-label">Email/Pin Submits Quests</div>
 
-  <!-- Карусель 100 кнопок Quest -->
-  <div class="large-quest-carousel carousel-container wrap" role="list" aria-label="Hundred Quest Buttons Carousel" style="max-height:400px; overflow-y:auto;">
+  <!-- Карусель 60 кнопок Quest -->
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height: 150px; overflow-x: auto; white-space: nowrap; margin-top: 5px;">
     <script>
-      const container100 = document.currentScript.parentNode;
-      for(let i = 0; i < 100; i++){
+      const container60 = document.currentScript.parentNode;
+      for (let i=0; i<60; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
         btn.textContent = 'Quest';
-        container100.appendChild(btn);
+        container60.appendChild(btn);
       }
     </script>
   </div>
