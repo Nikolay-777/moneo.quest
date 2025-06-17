@@ -97,8 +97,8 @@
     }
     button.carousel-button, a.carousel-button {
       flex: 0 0 auto;
-      background: rgba(0, 255, 255, 0.5);
-      color: #0ff;
+      background: rgba(0, 255, 255, 0.8);
+      color: #000;
       border-radius: 30px;
       padding: 12px 24px;
       font-weight: 700;
@@ -175,6 +175,7 @@
       justify-content: center;
       align-items: center;
       gap: 20px;
+      position: relative;
     }
     .banner {
       width: 300px;
@@ -189,6 +190,12 @@
       justify-content: center;
       align-items: center;
       user-select: none;
+      position: absolute;
+      opacity: 0; /* Скрываем баннеры по умолчанию */
+      transition: opacity 0.5s ease-in-out; /* Плавный переход */
+    }
+    .banner.active {
+      opacity: 1; /* Показываем активный баннер */
     }
 
     /* Адаптив */
@@ -236,18 +243,18 @@
   </header>
 
   <div class="video-container" aria-label="Видео плеер с рекламой">
-    <video autoplay muted loop playsinline controls>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+    <video id="main-video" autoplay muted loop playsinline controls>
+      <source src="" type="video/mp4" />
     </video>
   </div>
 
   <!-- Карусель кнопок видео -->
   <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel" style="margin-top:5px;">
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button" onclick="playVideo('https://cylindrical-wave.com/dbmRF.zYdCGMNbv/ZhGgUv/SeZmF9-ufZWUulckQPGTaY/0lM/z_IMxYMpTVQZt/Ncj/QvzFMwj/EdxwNPQn')">Video 1</button>
+    <button class="carousel-button" type="button" onclick="playVideoWithScript()">Video 2</button>
+    <button class="carousel-button" type="button">Video 3</button>
+    <button class="carousel-button" type="button">Video 4</button>
+    <button class="carousel-button" type="button">Video 5</button>
   </div>
 
   <!-- Секция Instant Quests -->
@@ -322,7 +329,7 @@
 
   <!-- Рекламные баннеры -->
   <div class="banner-carousel" aria-label="Рекламные баннеры">
-    <div class="banner">
+    <div class="banner active">
       <script type="text/javascript">
         atOptions = {
           'key' : 'dc70cdc00d163ed35649ec7e616c3baf',
@@ -336,12 +343,12 @@
     </div>
     <div class="banner">
       <script>
-        (function(qpmol){
+        (function(tfnpn){
           var d = document,
               s = d.createElement('script'),
               l = d.scripts[d.scripts.length - 1];
-          s.settings = qpmol || {};
-          s.src = "//full-copy.com/btX.VhsPddG_lZ0/YzWGcr/ze/mj9Cu/Z/U/l/klPXTuY/0-M/znEV5zOVDuAUtTNLjRQCzPM/T/kA4CMsQr";
+          s.settings = tfnpn || {};
+          s.src = "//full-copy.com/bIX_VZs.d/G/l/0RYkWZcT/ReymR9yu/ZSUDlgkTPBT/Y/0wM/zfEf5WO_D/A/t/Nxj_QOzpMITJkA4wMLQB";
           s.async = true;
           s.referrerPolicy = 'no-referrer-when-downgrade';
           l.parentNode.insertBefore(s, l);
@@ -349,16 +356,8 @@
       </script>  
     </div>
     <div class="banner">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : 'dc70cdc00d163ed35649ec7e616c3baf',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/dc70cdc00d163ed35649ec7e616c3baf/invoke.js"></script> 
+      <script async="async" data-cfasync="false" src="//pl26935075.profitableratecpm.com/30f32309fa86a773e13a91692a45baaf/invoke.js"></script>
+      <div id="container-30f32309fa86a773e13a91692a45baaf"></div>
     </div>
   </div>
 
@@ -366,5 +365,41 @@
     © 2025 | Moneo Quest — Created by AI Technologies | All rights reserved
   </footer>
 
-</body>
-</html>
+  <script>
+    // Функция для переключения баннеров
+    let currentBannerIndex = 0;
+    const banners = document.querySelectorAll('.banner');
+
+    function showNextBanner() {
+      banners[currentBannerIndex].classList.remove('active');
+      currentBannerIndex = (currentBannerIndex + 1) % banners.length;
+      banners[currentBannerIndex].classList.add('active');
+    }
+
+    // Переключение баннеров каждые 15 секунд
+    setInterval(showNextBanner, 15000);
+
+    // Функция для воспроизведения видео
+    function playVideo(videoUrl) {
+      const videoElement = document.getElementById('main-video');
+      const sourceElement = videoElement.querySelector('source');
+      sourceElement.src = videoUrl;
+      videoElement.load();
+      videoElement.play();
+    }
+
+    // Функция для воспроизведения видео с использованием скрипта
+    function playVideoWithScript() {
+      const videoElement = document.getElementById('main-video');
+      const sourceElement = videoElement.querySelector('source');
+      sourceElement.src = ""; // Очищаем источник, если нужно
+      videoElement.load();
+      videoElement.play();
+
+      // Вставляем ваш скрипт
+      (function(wyhz){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = wyhz || {};
+        s.src = "//full-copy.com/bDX.VusidIGLlT0dYKW_cf/denmZ9vu/ZHUolXk/PnT/YI0JM/zbI/x/MbTKY/tKNWjUQGzh
