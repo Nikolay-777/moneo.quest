@@ -11,7 +11,8 @@
   html, body {
     margin: 0; padding: 0; height: 100%;
     font-family: Arial, sans-serif;
-    background: #111;
+    background: url('https://example.com/path/to/thunderstorm-background.jpg') no-repeat center center fixed; /* Замените на URL изображения грозового неба */
+    background-size: cover; /* Заполнение фона */
     color: #0ff;
     text-align: center;
     overflow-x: hidden;
@@ -81,10 +82,10 @@
     position: relative;
     border-radius: 12px;
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: inset 0 0 25px rgba(0, 255, 255, 0.3);
+    box-shadow: inset 0 0 25px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.5); /* Добавление тени */
     display: flex;
     gap: 15px; /* Уменьшение расстояния между кнопками */
-    height: 80px; /* Высота контейнера */
+    height: 100px; /* Увеличение высоты контейнера */
     align-items: center; /* Выравнивание по центру по вертикали */
     z-index: 10;
   }
@@ -162,7 +163,7 @@
       border-radius: 20px;
       box-shadow: inset 0 0 70px #0ff;
       gap: 15px; /* Уменьшение расстояния между кнопками */
-      height: 70px; /* Высота контейнера */
+      height: 100px; /* Увеличение высоты контейнера */
       align-items: center !important;
       justify-content: center !important;
     }
