@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moneo Quest с Инстал Квест и баннерами</title>
+  <title>Moneo Quest — Полная структура сайта</title>
   <style>
+    /* --- Общие стили и сбросы --- */
     *, *::before, *::after {
       box-sizing: border-box;
     }
     html, body {
       margin: 0; padding: 0; height: 100%;
       font-family: Arial, sans-serif;
-      background: #000;
+      background: #000; /* Черный фон */
       color: #0ff;
       text-align: center;
       overflow-x: hidden;
@@ -20,6 +21,7 @@
       min-height: 100vh;
       position: relative;
     }
+    /* Стили для фонового видео */
     #background-video {
       position: fixed;
       top: 0; left: 0;
@@ -29,6 +31,7 @@
       user-select: none;
       pointer-events: none;
     }
+    /* Шапка сайта */
     header {
       padding: 20px;
       background: rgba(26,26,26,0.8);
@@ -55,6 +58,7 @@
       text-align: center;
       flex: 1;
     }
+    /* Видео плеер */
     .video-container {
       position: relative;
       width: 100%;
@@ -70,6 +74,7 @@
       object-fit: cover;
       display: block;
     }
+    /* Общие стили для каруселей кнопок */
     .carousel-container {
       max-width: 900px;
       margin: 20px auto;
@@ -123,6 +128,7 @@
       box-shadow: 0 0 40px #0ff, inset 0 0 20px #66ffff;
       outline: none;
     }
+    /* Заголовки секций */
     .section-label {
       max-width: 900px;
       margin: 20px auto;
@@ -137,6 +143,7 @@
       position: relative;
       z-index: 10;
     }
+    /* Футер */
     footer {
       padding: 20px;
       user-select: none;
@@ -148,11 +155,13 @@
       box-shadow: 0 -5px 20px #06b6d4;
       margin-top: auto;
     }
+
+    /* Блок баннеров */
     .banner-carousel {
       position: relative;
       max-width: 900px;
       width: 100%;
-      height: 200px;
+      height: 250px;
       margin: 20px auto 40px auto;
       overflow: hidden;
       border-radius: 12px;
@@ -162,30 +171,27 @@
         0 0 20px rgba(0, 255, 255, 0.5);
       user-select: none;
       z-index: 10;
-    }
-    .banner-track {
-      display: flex;
-      width: calc(350px * 10);
-      animation: scroll 20s linear infinite;
-    }
-    .banner {
-      flex: 0 0 350px;
-      height: 180px;
-      margin: 10px;
-      border-radius: 12px;
-      background-color: #333;
-      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 20px;
+    }
+    .banner {
+      width: 300px;
+      height: 250px;
+      border-radius: 12px;
+      background-color: #222;
+      box-shadow: 0 0 30px #00ffff;
+      overflow: hidden;
+      color: #fff;
       font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       user-select: none;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
     }
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+
+    /* Адаптив */
     @media (max-width: 768px) {
       .title { font-size: 2.5rem; }
       .video-container { height: 40vh; }
@@ -208,18 +214,13 @@
         margin: 15px 10px;
       }
       .banner-carousel {
-        max-width: 95vw;
-        height: 140px;
+        height: auto;
+        flex-wrap: wrap;
       }
       .banner {
-        flex: 0 0 250px;
-        height: 140px;
-        margin: 6px;
-        font-size: 1.2rem;
-      }
-      .banner-track {
-        width: calc(250px * 10);
-        animation-duration: 15s;
+        width: 90vw;
+        height: 120px;
+        margin-bottom: 15px;
       }
     }
   </style>
@@ -240,17 +241,19 @@
     </video>
   </div>
 
+  <!-- Карусель кнопок видео -->
   <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel" style="margin-top:5px;">
-    <button class="carousel-button" type="button">Video 1</button>
-    <button class="carousel-button" type="button">Video 2</button>
-    <button class="carousel-button" type="button">Video 3</button>
-    <button class="carousel-button" type="button">Video 4</button>
-    <button class="carousel-button" type="button">Video 5</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
   </div>
 
+  <!-- Секция Instant Quests -->
   <div class="section-label">Instant Quests</div>
-
   <div class="instant-quests-carousel carousel-container" role="list" aria-label="Instant Quests Carousel" style="margin-top:5px;">
+    <!-- Кнопки генерируются скриптом -->
     <script>
       const instantQuestLinks = [
         "https://lnkmeup.com/view.php?id=5541154&pub=3275147",
@@ -259,10 +262,8 @@
         "https://lnkmeup.com/view.php?id=5541119&pub=3275147",
         "https://mobtrk.link/view.php?id=5539729&pub=3275147",
         "https://lnkmeup.com/view.php?id=5541117&pub=3275147",
-        // ...добавьте остальные ссылки здесь
       ];
       const containerInstant = document.currentScript.parentNode;
-
       instantQuestLinks.forEach((url, index) => {
         const a = document.createElement('a');
         a.href = url;
@@ -275,11 +276,12 @@
     </script>
   </div>
 
+  <!-- Секция Email/Pin Submits Quests -->
   <div class="section-label">Email/Pin Submits Quests</div>
-
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap; margin-top:5px;">
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Email/Pin Submits Quests Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap; margin-top:5px;">
+    <!-- Кнопки генерируются скриптом -->
     <script>
-      const links = [
+      const emailPinLinks = [
         "https://lnkmeup.com/view.php?id=5541154&pub=3275147",
         "https://lnksforyou.com/view.php?id=5539551&pub=3275147",
         "https://directcpi.com/view.php?id=5541118&pub=3275147",
@@ -300,34 +302,65 @@
         "https://lnksforyou.com/view.php?id=5538974&pub=3275147",
         "https://lnksforyou.com/view.php?id=5539596&pub=3275147",
         "https://lnksforyou.com/view.php?id=5539686&pub=3275147",
-        // ... остальные ссылки ...
+        "https://lnksforyou.com/view.php?id=5539687&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539833&pub=3275147",
+        "https://mobtrk.link/view.php?id=5539834&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539897&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539898&pub=3275147",
+        "https://directcpi.com/view.php?id=5539911&pub=3275147"
       ];
-
-      const container60 = document.currentScript.parentNode;
-      links.forEach((link, index) => {
+      const containerEmailPin = document.currentScript.parentNode;
+      emailPinLinks.forEach((url, index) => {
         const a = document.createElement('a');
-        a.href = link;
+        a.href = url;
         a.className = 'carousel-button';
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
         a.textContent = `Quest ${index + 1}`;
-        container60.appendChild(a);
+        containerEmailPin.appendChild(a);
       });
     </script>
   </div>
 
-  <div class="banner-carousel" aria-label="Бесконечная карусель баннеров">
-    <div class="banner-track" aria-live="polite" aria-atomic="true">
-      <div class="banner">Баннер 1</div>
-      <div class="banner">Баннер 2</div>
-      <div class="banner">Баннер 3</div>
-      <div class="banner">Баннер 4</div>
-      <div class="banner">Баннер 5</div>
-      <div class="banner">Баннер 1</div>
-      <div class="banner">Баннер 2</div>
-      <div class="banner">Баннер 3</div>
-      <div class="banner">Баннер 4</div>
-      <div class="banner">Баннер 5</div>
+  <!-- Рекламные баннеры -->
+  <div class="banner-carousel" aria-label="Рекламные баннеры">
+    <div class="banner">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'dc70cdc00d163ed35649ec7e616c3baf',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/dc70cdc00d163ed35649ec7e616c3baf/invoke.js"></script> 
+    </div>
+    <div class="banner">
+      <script>
+        (function(qpmol){
+          var d = document,
+              s = d.createElement('script'),
+              l = d.scripts[d.scripts.length - 1];
+          s.settings = qpmol || {};
+          s.src = "//full-copy.com/btX.VhsPddG_lZ0/YzWGcr/ze/mj9Cu/Z/U/l/klPXTuY/0-M/znEV5zOVDuAUtTNLjRQCzPM/T/kA4CMsQr";
+          s.async = true;
+          s.referrerPolicy = 'no-referrer-when-downgrade';
+          l.parentNode.insertBefore(s, l);
+        })({})
+      </script>  
+    </div>
+    <div class="banner">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'dc70cdc00d163ed35649ec7e616c3baf',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/dc70cdc00d163ed35649ec7e616c3baf/invoke.js"></script> 
     </div>
   </div>
 
