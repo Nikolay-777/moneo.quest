@@ -243,8 +243,9 @@
   </header>
 
   <div class="video-container" aria-label="Видео плеер с рекламой">
-    <video id="main-video" autoplay muted loop playsinline controls>
+    <video id="main-video" controls>
       <source src="" type="video/mp4" />
+      Ваш браузер не поддерживает видео.
     </video>
   </div>
 
@@ -252,34 +253,20 @@
   <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel" style="margin-top:5px;">
     <button class="carousel-button" type="button" onclick="playVideo('https://cylindrical-wave.com/dbmRF.zYdCGMNbv/ZhGgUv/SeZmF9-ufZWUulckQPGTaY/0lM/z_IMxYMpTVQZt/Ncj/QvzFMwj/EdxwNPQn')">Video 1</button>
     <button class="carousel-button" type="button" onclick="playVideoWithScript()">Video 2</button>
-    <button class="carousel-button" type="button">Video 3</button>
-    <button class="carousel-button" type="button">Video 4</button>
-    <button class="carousel-button" type="button">Video 5</button>
+    <button class="carousel-button" type="button" onclick="playVideo('https://example.com/video3.mp4')">Video 3</button>
+    <button class="carousel-button" type="button" onclick="playVideo('https://example.com/video4.mp4')">Video 4</button>
+    <button class="carousel-button" type="button" onclick="playVideo('https://example.com/video5.mp4')">Video 5</button>
   </div>
 
   <!-- Секция Instant Quests -->
   <div class="section-label">Instant Quests</div>
   <div class="instant-quests-carousel carousel-container" role="list" aria-label="Instant Quests Carousel" style="margin-top:5px;">
-    <script>
-      const instantQuestLinks = [
-        "https://lnkmeup.com/view.php?id=5541154&pub=3275147",
-        "https://lnksforyou.com/view.php?id=5539551&pub=3275147",
-        "https://directcpi.com/view.php?id=5541118&pub=3275147",
-        "https://lnkmeup.com/view.php?id=5541119&pub=3275147",
-        "https://mobtrk.link/view.php?id=5539729&pub=3275147",
-        "https://lnkmeup.com/view.php?id=5541117&pub=3275147",
-      ];
-      const containerInstant = document.currentScript.parentNode;
-      instantQuestLinks.forEach((url, index) => {
-        const a = document.createElement('a');
-        a.href = url;
-        a.className = 'carousel-button';
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = `Instant Quest ${index + 1}`;
-        containerInstant.appendChild(a);
-      });
-    </script>
+    <button class="carousel-button" type="button" onclick="executeScript1()">Instant Quest 1</button>
+    <button class="carousel-button" type="button" onclick="openPop()">Instant Quest 2</button>
+    <button class="carousel-button" type="button" onclick="loadScript()">Instant Quest 3</button>
+    <button class="carousel-button" type="button">Instant Quest 4</button>
+    <button class="carousel-button" type="button">Instant Quest 5</button>
+    <button class="carousel-button" type="button">Instant Quest 6</button>
   </div>
 
   <!-- Секция Email/Pin Submits Quests -->
@@ -402,6 +389,9 @@
             s = d.createElement('script'),
             l = d.scripts[d.scripts.length - 1];
         s.settings = wyhz || {};
-        s.src = "//full-copy.com/bDX.VusidIGLlT0dYKW_cf/denmZ9vu/ZHUolXk/PnT/YI0JM/zbI/x/MbTKY/tKNWjUQGzh
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1271781864602508"
-     crossorigin="anonymous"></script>
+        s.src = "//full-copy.com/bDX.VusidIGLlT0dYKW_cf/denmZ9vu/ZHUolXk/PnT/YI0JM/zbI/x/MbTKY/tKNWjUQGzhMzjsEWxmNUwn";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+      })({})
+   
