@@ -1,196 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Moneo Quest — проверенный скрипт каруселей</title>
-<style>
-  /* Общие стили повторяются из предыдущих версий */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  html, body {
-    margin: 0; padding: 0; height: 100%;
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: #0ff;
-    text-align: center;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    position: relative;
-  }
-  #background-video {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1;
-    user-select: none;
-    pointer-events: none;
-  }
-  header {
-    padding: 20px;
-    background: rgba(26,26,26,0.8);
-    backdrop-filter: blur(8px);
-    z-index: 10;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .title {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #00ffff;
-    text-shadow: 0 0 8px #00ffff, 0 0 20px #00ffff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff;
-    user-select: none;
-    margin: 0 auto;
-    white-space: nowrap;
-    text-align: center;
-    flex: 1;
-  }
-  .video-container {
-    position: relative;
-    width: 95vw;
-    max-width: 1300px;
-    aspect-ratio: 16 / 9;
-    margin: 20px auto 60px auto;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
-    z-index: 10;
-    background-color: black;
-  }
-  .video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 16px;
-  }
-  .btn-withdraw { display: none; }
-  .carousel-container {
-    max-width: 900px;
-    margin: 0 auto 45px;
-    padding: 0 20px 40px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    user-select: none;
-    position: relative;
-    border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: inset 0 0 25px rgba(0, 255, 255, 0.3);
-    display: flex;
-    gap: 25px;
-    scroll-behavior: auto;
-    flex-wrap: nowrap;
-    height: 60px;
-    align-items: center;
-    z-index: 10;
-    margin-top: 5px; /* отступ от видеоплеера */
-  }
-  .carousel-container.wrap {
-    flex-wrap: wrap;
-    max-height: 400px;
-    overflow-y: auto;
-    margin-bottom: 60px;
-    padding-bottom: 15px;
-    height: auto;
-  }
-  button.carousel-button, a.carousel-button {
-    flex: 0 0 auto;
-    background: rgba(0, 255, 255, 0.25);
-    color: #0ff;
-    border-radius: 24px;
-    padding: 18px 36px;
-    font-weight: 700;
-    font-size: 1.3rem;
-    white-space: nowrap;
-    box-shadow: 0 0 35px #00ffff, inset 0 0 25px #33ffff;
-    cursor: pointer;
-    user-select: none;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-    min-width: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 44px;
-    box-sizing: border-box;
-  }
-  button.carousel-button:hover,
-  a.carousel-button:hover {
-    background-color: #0ff;
-    color: #003f3f;
-    box-shadow: 0 0 50px #0ff, inset 0 0 40px #66ffff;
-    outline: none;
-  }
-  .section-label {
-    max-width: 900px;
-    margin: 0 auto 20px;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #0ff;
-    text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
-    user-select: none;
-    text-align: center;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-  footer {
-    padding: 20px 0 40px;
-    font-size: 14px;
-    color: #888;
-    user-select: none;
-    position: relative;
-    z-index: 10;
-  }
-  @media (max-width: 768px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moneo Quest — Вернутый видеоплеер и уменьшенные кнопки</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #0ff;
+      text-align: center;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+    #background-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      user-select: none;
+      pointer-events: none;
+    }
     header {
-      margin-top: 20px;
+      padding: 20px;
+      background: rgba(26,26,26,0.8);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .title {
-      font-size: 2.5rem;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff, 0 0 20px #00ffff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff;
+      user-select: none;
+      margin: 0 auto;
+      white-space: nowrap;
+      text-align: center;
+      flex: 1;
     }
     .video-container {
+      position: relative;
       width: 95vw;
-      height: auto;
+      max-width: 1300px;
       aspect-ratio: 16 / 9;
-      margin-bottom: 80px;
-    }
-    .carousel-container {
-      max-width: 95vw;
-      padding: 0 15px 40px;
-      background-color: rgba(20,20,30,0.85);
+      margin: 20px auto 60px auto;
       border-radius: 16px;
-      box-shadow: inset 0 0 40px #0ff;
-      gap: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(0,255,255,0.8);
+      z-index: 10;
+      background-color: black;
+    }
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* нормальный плеер, не полоска */
+      display: block;
+      border-radius: 16px;
+    }
+    .btn-withdraw { display: none; }
+    .carousel-container {
+      max-width: 900px;
+      margin: 0 auto 50px;
+      padding: 0 20px 40px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      user-select: none;
+      position: relative;
+      border-radius: 12px;
+      background-color: rgba(0,0,0,0.8);
+      box-shadow: inset 0 0 25px rgba(0,255,255,0.3);
+      display: flex;
+      gap: 25px;
+      scroll-behavior: auto;
+      flex-wrap: nowrap;
+      height: 80px;
+      min-height: 80px;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      margin-top: 5px;
     }
     .carousel-container.wrap {
-      max-height: none;
-      height: auto;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      max-height: 450px;
+      overflow-y: auto;
       margin-bottom: 60px;
+      padding-bottom: 20px;
+      height: auto;
+      align-items: stretch;
     }
     button.carousel-button, a.carousel-button {
-      min-width: 90px;
-      padding: 10px 16px;
-      font-size: 0.9rem;
+      flex: 0 0 auto;
+      background: rgba(0,255,255,0.35);
+      color: #0ff;
+      border-radius: 30px;
+      padding: 10px 20px; /* уменьшенный padding */
+      font-weight: 700;
+      font-size: 1rem; /* уменьшенный размер шрифта */
+      white-space: nowrap;
+      box-shadow: 0 0 50px #00ffff, inset 0 0 40px #33ffff;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+      min-width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 44px; /* уменьшена высота */
+      box-sizing: border-box;
+      padding-bottom: 3px; /* небольшой внутренний отступ снизу */
+    }
+    button.carousel-button:hover,
+    a.carousel-button:hover {
+      background-color: #0ff;
+      color: #003f3f;
+      box-shadow: 0 0 90px #0ff, inset 0 0 50px #66ffff;
+      outline: none;
     }
     .section-label {
-      font-size: 1.5rem;
-      margin: 15px 10px 20px;
+      max-width: 900px;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0ff;
+      text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+      user-select: none;
+      text-align: center;
+      padding: 0 10px;
+      box-sizing: border-box;
     }
-  }
-</style>
+    footer {
+      height: 60px;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+      margin-top: auto;
+      padding: 20px 0;
+      background: rgba(26,26,26,0.8);
+      color: #888;
+      text-align: center;
+      box-shadow: 0 -3px 15px #06b6d4;
+    }
+    @media (max-width: 768px) {
+      header {
+        margin-top: 20px;
+      }
+      .title {
+        font-size: 2.5rem;
+      }
+      .video-container {
+        width: 95vw;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin-bottom: 80px;
+      }
+      .carousel-container {
+        max-width: 95vw;
+        padding: 0 15px 40px;
+        background-color: rgba(0,0,0,0.85);
+        border-radius: 20px;
+        box-shadow: inset 0 0 70px #0ff;
+        gap: 25px;
+        height: 70px;
+        min-height: 70px;
+        justify-content: center;
+      }
+      .carousel-container.wrap {
+        max-height: none;
+        height: auto;
+        flex-wrap: nowrap;
+        margin-bottom: 60px;
+        align-items: stretch;
+      }
+      button.carousel-button, a.carousel-button {
+        min-width: 140px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        height: 36px;
+        padding-bottom: 3px;
+      }
+      .section-label {
+        font-size: 1.8rem;
+        margin: 30px 10px 40px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -203,32 +213,33 @@
   </header>
 
   <div class="video-container" aria-label="Видео плеер с рекламой">
-    <video autoplay muted loop playsinline>
+    <video autoplay muted loop playsinline controls>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Ваш браузер не поддерживает видео.
     </video>
   </div>
 
   <!-- Карусель 10 кнопок Video -->
-  <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel">
-    <button class="carousel-button" type="button">Video 1</button>
-    <button class="carousel-button" type="button">Video 2</button>
-    <button class="carousel-button" type="button">Video 3</button>
-    <button class="carousel-button" type="button">Video 4</button>
-    <button class="carousel-button" type="button">Video 5</button>
-    <button class="carousel-button" type="button">Video 6</button>
-    <button class="carousel-button" type="button">Video 7</button>
-    <button class="carousel-button" type="button">Video 8</button>
-    <button class="carousel-button" type="button">Video 9</button>
-    <button class="carousel-button" type="button">Video 10</button>
+  <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel" style="margin-top:5px;">
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video</button>
   </div>
 
   <div class="section-label">Instant Quests</div>
 
   <!-- Карусель 50 кнопок Quest -->
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel">
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel" style="margin-top:5px;">
     <script>
       const container50 = document.currentScript.parentNode;
-      for(let i=0; i<50; i++){
+      for(let i = 0; i < 50; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
@@ -240,11 +251,11 @@
 
   <div class="section-label">Email/Pin Submits Quests</div>
 
-  <!-- Карусель 60 кнопок Quest в один ряд -->
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height: 150px; overflow-x: auto; white-space: nowrap;">
+  <!-- Карусель 60 кнопок Quest -->
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap; margin-top:5px;">
     <script>
       const container60 = document.currentScript.parentNode;
-      for(let i=0; i<60; i++){
+      for(let i = 0; i < 60; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
