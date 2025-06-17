@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moneo Quest — Пример с баннерами и прокруткой</title>
+  <title>Moneo Quest с Инстал Квест и баннерами</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -114,6 +114,7 @@
       text-overflow: ellipsis;
       height: 48px;
       box-sizing: border-box;
+      text-decoration: none;
     }
     button.carousel-button:hover,
     a.carousel-button:hover {
@@ -147,7 +148,6 @@
       box-shadow: 0 -5px 20px #06b6d4;
       margin-top: auto;
     }
-    /* Бесконечная плавная карусель */
     .banner-carousel {
       position: relative;
       max-width: 900px;
@@ -186,7 +186,6 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    /* Адаптив */
     @media (max-width: 768px) {
       .title { font-size: 2.5rem; }
       .video-container { height: 40vh; }
@@ -197,7 +196,8 @@
         border-radius: 15px;
         gap: 10px;
       }
-      button.carousel-button {
+      button.carousel-button,
+      a.carousel-button {
         min-width: 100px;
         padding: 10px 20px;
         font-size: 1rem;
@@ -241,30 +241,37 @@
   </div>
 
   <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel" style="margin-top:5px;">
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
-    <button class="carousel-button" type="button">Video</button>
+    <button class="carousel-button" type="button">Video 1</button>
+    <button class="carousel-button" type="button">Video 2</button>
+    <button class="carousel-button" type="button">Video 3</button>
+    <button class="carousel-button" type="button">Video 4</button>
+    <button class="carousel-button" type="button">Video 5</button>
   </div>
 
   <div class="section-label">Instant Quests</div>
 
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel" style="margin-top:5px;">
+  <div class="instant-quests-carousel carousel-container" role="list" aria-label="Instant Quests Carousel" style="margin-top:5px;">
     <script>
-      const container50 = document.currentScript.parentNode;
-      for(let i=0; i < 50; i++){
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'carousel-button';
-        btn.textContent = 'Quest';
-        container50.appendChild(btn);
-      }
+      const instantQuestLinks = [
+        "https://lnkmeup.com/view.php?id=5541154&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539551&pub=3275147",
+        "https://directcpi.com/view.php?id=5541118&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5541119&pub=3275147",
+        "https://mobtrk.link/view.php?id=5539729&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5541117&pub=3275147",
+        // ...добавьте остальные ссылки здесь
+      ];
+      const containerInstant = document.currentScript.parentNode;
+
+      instantQuestLinks.forEach((url, index) => {
+        const a = document.createElement('a');
+        a.href = url;
+        a.className = 'carousel-button';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = `Instant Quest ${index + 1}`;
+        containerInstant.appendChild(a);
+      });
     </script>
   </div>
 
@@ -272,14 +279,40 @@
 
   <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap; margin-top:5px;">
     <script>
+      const links = [
+        "https://lnkmeup.com/view.php?id=5541154&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539551&pub=3275147",
+        "https://directcpi.com/view.php?id=5541118&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5541119&pub=3275147",
+        "https://mobtrk.link/view.php?id=5539729&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5541117&pub=3275147",
+        "https://directcpi.com/view.php?id=5540940&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539816&pub=3275147",
+        "https://directcpi.com/view.php?id=5539908&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5539715&pub=3275147",
+        "https://directcpi.com/view.php?id=5541089&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5539760&pub=3275147",
+        "https://mobtrk.link/view.php?id=5539960&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5539896&pub=3275147",
+        "https://lnkmeup.com/view.php?id=5541153&pub=3275147",
+        "https://directcpi.com/view.php?id=5539732&pub=3275147",
+        "https://mobtrk.link/view.php?id=5538196&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5538974&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539596&pub=3275147",
+        "https://lnksforyou.com/view.php?id=5539686&pub=3275147",
+        // ... остальные ссылки ...
+      ];
+
       const container60 = document.currentScript.parentNode;
-      for(let i=0; i<60; i++){
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'carousel-button';
-        btn.textContent = 'Quest';
-        container60.appendChild(btn);
-      }
+      links.forEach((link, index) => {
+        const a = document.createElement('a');
+        a.href = link;
+        a.className = 'carousel-button';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = `Quest ${index + 1}`;
+        container60.appendChild(a);
+      });
     </script>
   </div>
 
