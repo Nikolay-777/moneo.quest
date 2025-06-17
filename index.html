@@ -56,29 +56,24 @@
     flex: 1;
   }
   .video-container {
-    position: relative;
-    width: 95vw;
-    max-width: 1300px;
-    aspect-ratio: 16 / 9;
-    margin: 20px auto 60px auto;
-    border-radius: 16px;
+    position: relative; /* Изменено на relative */
+    width: 100%; /* Занимает 100% ширины окна */
+    height: 50vh; /* Установите высоту на 50% от высоты окна */
+    border-radius: 0; /* Уберите закругление */
     overflow: hidden;
-    box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
-    z-index: 10;
-    background-color: black;
+    z-index: 10; /* Убедитесь, что плеер выше других элементов */
+    background-color: black; /* Фон для контейнера */
   }
   .video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 100%; /* Занимает всю ширину контейнера */
+    height: 100%; /* Занимает всю высоту контейнера */
+    object-fit: cover; /* Обеспечивает заполнение контейнера */
     display: block;
-    border-radius: 16px;
   }
-  .btn-withdraw { display: none; }
   .carousel-container {
     max-width: 900px;
-    margin: 0 auto 40px;
-    padding: 0 20px 40px;
+    margin: 20px auto; /* Центрирование */
+    padding: 20px; /* Добавление отступов */
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
@@ -88,40 +83,26 @@
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: inset 0 0 25px rgba(0, 255, 255, 0.3);
     display: flex;
-    gap: 25px;
-    scroll-behavior: auto;
-    flex-wrap: nowrap;
-    height: 80px;
-    min-height: 80px;
-    align-items: center;
-    justify-content: center;
+    gap: 15px; /* Уменьшение расстояния между кнопками */
+    height: 80px; /* Высота контейнера */
+    align-items: center; /* Выравнивание по центру по вертикали */
     z-index: 10;
-    margin-top: 5px;
-  }
-  .carousel-container.wrap {
-    flex-wrap: wrap;
-    max-height: 420px;
-    overflow-y: auto;
-    margin-bottom: 60px;
-    padding-bottom: 15px;
-    height: auto;
-    align-items: stretch;
   }
   button.carousel-button, a.carousel-button {
     flex: 0 0 auto;
-    background: linear-gradient(135deg, #0ff, #06f);
-    color: #000;
-    border-radius: 16px;
-    padding: 10px 22px;
+    background: rgba(0, 255, 255, 0.5); /* Более светлый фон */
+    color: #0ff;
+    border-radius: 30px;
+    padding: 12px 24px; /* Уменьшение отступов */
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.2rem; /* Уменьшение размера шрифта */
     white-space: nowrap;
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.5), inset 0 0 10px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px #00ffff, inset 0 0 20px #33ffff; /* Уменьшение тени */
     cursor: pointer;
     user-select: none;
     text-align: center;
-    transition: all 0.3s ease-in-out;
-    min-width: 130px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    min-width: 120px; /* Уменьшение минимальной ширины */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,19 +110,19 @@
     border: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 48px;
+    height: 48px; /* Высота кнопок */
     box-sizing: border-box;
   }
   button.carousel-button:hover,
   a.carousel-button:hover {
-    background: #0ff;
-    color: #111;
-    box-shadow: 0 0 25px #0ff, inset 0 0 20px #66ffff;
-    transform: scale(1.03);
+    background-color: #0ff;
+    color: #003f3f;
+    box-shadow: 0 0 40px #0ff, inset 0 0 20px #66ffff;
+    outline: none;
   }
   .section-label {
     max-width: 900px;
-    margin: 0 auto 20px;
+    margin: 20px auto; /* Центрирование */
     font-size: 2rem;
     font-weight: 700;
     color: #0ff;
@@ -172,10 +153,7 @@
       font-size: 2.7rem;
     }
     .video-container {
-      width: 95vw;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      margin-bottom: 80px;
+      height: 50vh; /* Высота видео плеера */
     }
     .carousel-container {
       max-width: 95vw;
@@ -183,24 +161,16 @@
       background-color: rgba(0,0,0,0.85);
       border-radius: 20px;
       box-shadow: inset 0 0 70px #0ff;
-      gap: 30px;
-      height: 70px;
-      min-height: 70px;
+      gap: 15px; /* Уменьшение расстояния между кнопками */
+      height: 70px; /* Высота контейнера */
       align-items: center !important;
       justify-content: center !important;
     }
-    .carousel-container.wrap {
-      max-height: none;
-      height: auto;
-      flex-wrap: nowrap;
-      margin-bottom: 60px;
-      align-items: stretch;
-    }
     button.carousel-button, a.carousel-button {
-      min-width: 140px;
-      padding: 12px 24px;
-      font-size: 1rem;
-      height: 42px;
+      min-width: 120px; /* Уменьшение минимальной ширины */
+      padding: 12px 24px; /* Уменьшение отступов */
+      font-size: 1rem; /* Уменьшение размера шрифта */
+      height: 40px; /* Высота кнопок */
     }
     .section-label {
       font-size: 1.8rem;
@@ -222,7 +192,8 @@
     </video>
   </div>
 
-  <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel">
+  <!-- Карусель 10 кнопок Video -->
+  <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel" style="margin-top:5px;">
     <button class="carousel-button" type="button">Video</button>
     <button class="carousel-button" type="button">Video</button>
     <button class="carousel-button" type="button">Video</button>
@@ -236,20 +207,24 @@
   </div>
 
   <div class="section-label">Instant Quests</div>
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel">
+
+  <!-- Карусель 50 кнопок Quest -->
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel" style="margin-top:5px;">
     <script>
       const container50 = document.currentScript.parentNode;
       for(let i=0; i < 50; i++){
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
-        btn.textContent = 'Quest';
+        btn.textContent = 'Quest'; // Кнопки без номеров
         container50.appendChild(btn);
       }
     </script>
   </div>
 
   <div class="section-label">Email/Pin Submits Quests</div>
+
+  <!-- Карусель 60 кнопок Quest -->
   <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap; margin-top:5px;">
     <script>
       const container60 = document.currentScript.parentNode;
@@ -257,7 +232,7 @@
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'carousel-button';
-        btn.textContent = 'Quest';
+        btn.textContent = 'Quest'; // Кнопки без номеров
         container60.appendChild(btn);
       }
     </script>
