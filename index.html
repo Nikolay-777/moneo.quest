@@ -11,8 +11,7 @@
   html, body {
     margin: 0; padding: 0; height: 100%;
     font-family: Arial, sans-serif;
-    background: url('https://example.com/path/to/thunderstorm-background.jpg') no-repeat center center fixed; /* Замените на URL изображения грозового неба */
-    background-size: cover; /* Заполнение фона */
+    background: #000; /* Черный фон */
     color: #0ff;
     text-align: center;
     overflow-x: hidden;
@@ -151,31 +150,29 @@
       margin-top: 20px;
     }
     .title {
-      font-size: 2.7rem;
+      font-size: 2.5rem; /* Уменьшение размера заголовка */
     }
     .video-container {
-      height: 50vh; /* Высота видео плеера */
+      height: 40vh; /* Уменьшение высоты видео плеера на мобильных устройствах */
     }
     .carousel-container {
-      max-width: 95vw;
-      padding: 0 20px 40px;
+      max-width: 95vw; /* Увеличение ширины контейнера на мобильных устройствах */
+      padding: 10px; /* Уменьшение отступов */
       background-color: rgba(0,0,0,0.85);
-      border-radius: 20px;
+      border-radius: 15px;
       box-shadow: inset 0 0 70px #0ff;
-      gap: 15px; /* Уменьшение расстояния между кнопками */
-      height: 100px; /* Увеличение высоты контейнера */
-      align-items: center !important;
-      justify-content: center !important;
+      gap: 10px; /* Уменьшение расстояния между кнопками */
+      height: 80px; /* Увеличение высоты контейнера */
     }
     button.carousel-button, a.carousel-button {
-      min-width: 120px; /* Уменьшение минимальной ширины */
-      padding: 12px 24px; /* Уменьшение отступов */
+      min-width: 100px; /* Уменьшение минимальной ширины */
+      padding: 10px 20px; /* Уменьшение отступов */
       font-size: 1rem; /* Уменьшение размера шрифта */
       height: 40px; /* Высота кнопок */
     }
     .section-label {
-      font-size: 1.8rem;
-      margin: 30px 10px 40px;
+      font-size: 1.5rem; /* Уменьшение размера текста для секции */
+      margin: 15px 10px; /* Уменьшение отступов */
     }
   }
 </style>
