@@ -70,7 +70,7 @@
   .video-container video {
     width: 100%;
     height: 100%;
-    object-fit: contain; 
+    object-fit: contain;
     display: block;
     border-radius: 16px;
   }
@@ -91,10 +91,10 @@
     gap: 25px;
     scroll-behavior: auto;
     flex-wrap: nowrap;
-    height: 80px;          /* большая фиксированная высота */
+    height: 80px;
     min-height: 80px;
-    align-items: center;   /* выравнивание по центру по вертикали */
-    justify-content: center; /* кнопки не прижимаются к краям */
+    align-items: center;
+    justify-content: center;
     z-index: 10;
     margin-top: 5px;
   }
@@ -109,19 +109,19 @@
   }
   button.carousel-button, a.carousel-button {
     flex: 0 0 auto;
-    background: rgba(0, 255, 255, 0.25);
-    color: #0ff;
-    border-radius: 30px;
-    padding: 18px 36px;
+    background: linear-gradient(135deg, #0ff, #06f);
+    color: #000;
+    border-radius: 16px;
+    padding: 10px 22px;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1rem;
     white-space: nowrap;
-    box-shadow: 0 0 70px #00ffff, inset 0 0 40px #33ffff;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.5), inset 0 0 10px rgba(0, 255, 255, 0.3);
     cursor: pointer;
     user-select: none;
     text-align: center;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-    min-width: 180px;
+    transition: all 0.3s ease-in-out;
+    min-width: 130px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,15 +129,15 @@
     border: none;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 54px;          /* высота кнопок меньше высоты контейнера */
+    height: 48px;
     box-sizing: border-box;
   }
   button.carousel-button:hover,
   a.carousel-button:hover {
-    background-color: #0ff;
-    color: #003f3f;
-    box-shadow: 0 0 90px #0ff, inset 0 0 50px #66ffff;
-    outline: none;
+    background: #0ff;
+    color: #111;
+    box-shadow: 0 0 25px #0ff, inset 0 0 20px #66ffff;
+    transform: scale(1.03);
   }
   .section-label {
     max-width: 900px;
@@ -197,17 +197,17 @@
       align-items: stretch;
     }
     button.carousel-button, a.carousel-button {
-      min-width: 160px;
-      padding: 18px 36px;
-      font-size: 1.2rem;
-      height: 48px;
+      min-width: 140px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      height: 42px;
     }
     .section-label {
       font-size: 1.8rem;
       margin: 30px 10px 40px;
     }
   }
-  </style>
+</style>
 </head>
 <body>
   <video id="background-video" autoplay muted loop playsinline>
@@ -222,8 +222,7 @@
     </video>
   </div>
 
-  <!-- Карусель 10 кнопок Video -->
-  <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel" style="margin-top:5px;">
+  <div class="video-buttons-carousel carousel-container" role="list" aria-label="Video buttons carousel">
     <button class="carousel-button" type="button">Video</button>
     <button class="carousel-button" type="button">Video</button>
     <button class="carousel-button" type="button">Video</button>
@@ -237,9 +236,7 @@
   </div>
 
   <div class="section-label">Instant Quests</div>
-
-  <!-- Карусель 50 кнопок Quest -->
-  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel" style="margin-top:5px;">
+  <div class="large-quest-carousel carousel-container" role="list" aria-label="Fifty Quest Buttons Carousel">
     <script>
       const container50 = document.currentScript.parentNode;
       for(let i=0; i < 50; i++){
@@ -253,8 +250,6 @@
   </div>
 
   <div class="section-label">Email/Pin Submits Quests</div>
-
-  <!-- Карусель 60 кнопок Quest -->
   <div class="large-quest-carousel carousel-container" role="list" aria-label="Sixty Quest Buttons Carousel" style="max-height:150px; overflow-x:auto; white-space:nowrap; margin-top:5px;">
     <script>
       const container60 = document.currentScript.parentNode;
